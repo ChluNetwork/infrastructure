@@ -1,0 +1,10 @@
+{
+    "port": 5000,
+    "marketplaceLocation": "https://demomarket.chlu.io",
+    "db": {
+        "password": "chlurocks"
+    },
+    "chluIpfs": {
+        "directory": "/home/ubuntu/.chlu/marketplace"
+    }
+}
