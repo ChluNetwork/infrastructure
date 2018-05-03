@@ -7,6 +7,7 @@
     "chlu-ipfs-support": "https://github.com/ChluNetwork/chlu-ipfs-support",
     "chlu-ipfs-support-experimental": "https://github.com/ChluNetwork/chlu-ipfs-support#ipfs-api",
     "chlu-marketplace-js": "https://github.com/ChluNetwork/chlu-marketplace-js",
+    "chlu-reputation-service-node": "ChluNetwork/chlu-service-node",
     "libp2p-websocket-star-rendezvous": "^0.2.3"
   }
 }
