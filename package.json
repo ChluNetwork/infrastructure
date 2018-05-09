@@ -6,7 +6,6 @@
   "dependencies": {
     "chlu-did-service": "ChluNetwork/chlu-did-service",
     "chlu-ipfs-support": "ChluNetwork/chlu-ipfs-support",
-    "chlu-ipfs-support-experimental": "ChluNetwork/chlu-ipfs-support#ipfs-api",
     "chlu-marketplace-js": "ChluNetwork/chlu-marketplace-js",
     "chlu-reputation-service-node": "ChluNetwork/chlu-service-node",
     "libp2p-websocket-star-rendezvous": "^0.2.3"
