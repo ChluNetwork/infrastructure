@@ -53,6 +53,13 @@ module.exports = {
             watch: false,
             args: '',
             max_memory_restart: '250M'
+        },
+        {
+            name: 'chlu-did-service',
+            script: projectPath('chlu-did-service/index.js'),
+            watch: false,
+            args: '',
+            max_memory_restart: '250M'
         }
     ],
 };
