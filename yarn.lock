@@ -354,7 +354,7 @@ bn.js@^4.0.0, bn.js@^4.11.0, bn.js@^4.11.3, bn.js@^4.4.0:
   version "4.11.8"
   resolved "https://registry.yarnpkg.com/bn.js/-/bn.js-4.11.8.tgz#2cde09eb5ee341f484746bb0309b3253b1b1442f"
 
-body-parser@1.18.2:
+body-parser@1.18.2, body-parser@^1.18.2:
   version "1.18.2"
   resolved "https://registry.yarnpkg.com/body-parser/-/body-parser-1.18.2.tgz#87678a19d84b47d859b83199bd59bce222b10454"
   dependencies:
@@ -644,9 +644,12 @@ chlu-marketplace-js@ChluNetwork/chlu-marketplace-js:
 
 chlu-reputation-service-node@ChluNetwork/chlu-service-node:
   version "1.0.0"
-  resolved "https://codeload.github.com/ChluNetwork/chlu-service-node/tar.gz/19772269065bb76350b4ef5a54e994b311909f2b"
+  resolved "https://codeload.github.com/ChluNetwork/chlu-service-node/tar.gz/3a00fdb6415cf510765a741a2418fadb8522bcbc"
   dependencies:
+    body-parser "^1.18.2"
     commander "^2.15.1"
+    cors "^2.8.4"
+    express "^4.16.3"
     ipfs "^0.28.2"
     orbit-db "^0.19.7"
 
