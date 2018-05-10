@@ -29,17 +29,6 @@ module.exports = {
             args: 'start --network staging',
             max_memory_restart: '250M'
         },
-        // disabled for now
-        /*
-        {
-            name: 'chlu-service-node-experimental',
-            script: projectPath('chlu-ipfs-support-experimental/bin/chlu-service-node.js'),
-            watch: false,
-            // use ipfs-api branch of chlu-ipfs-support
-            args: `start --network experimental -d ${home}/.chlu-experimental`,
-            max_memory_restart: '250M'
-        },
-        */
         {
             name: 'rendezvous',
             script: projectPath('libp2p-websocket-star-rendezvous/src/bin.js'),
