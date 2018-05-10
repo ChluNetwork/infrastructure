@@ -40,7 +40,7 @@ module.exports = {
             name: 'chlu-reputation-service-node',
             script: projectPath('chlu-reputation-service-node/index.js'),
             watch: false,
-            args: 'start',
+            args: 'start --port 3001',
             max_memory_restart: '250M'
         },
         {
