@@ -947,9 +947,9 @@ chloride@^2.2.8:
   optionalDependencies:
     sodium-native "^2.1.6"
 
-chlu-did-service@ChluNetwork/chlu-did-service:
+chlu-did-service@ChluNetwork/chlu-did-service#fix-chlu-did:
   version "1.0.0"
-  resolved "https://codeload.github.com/ChluNetwork/chlu-did-service/tar.gz/0f15142695a6b8c26be3c72fcb32b9f9e9f33676"
+  resolved "https://codeload.github.com/ChluNetwork/chlu-did-service/tar.gz/3fe06232e50878329630f7fb8b9c561ad9c6265e"
   dependencies:
     chlu-did ChluNetwork/chlu-did
     express "^4.16.3"
@@ -976,12 +976,12 @@ chlu-ipfs-support@ChluNetwork/chlu-ipfs-support:
     chlu-wallet-support-js ChluNetwork/chlu-wallet-support-js
     commander "^2.15.1"
     debounce-async "^0.0.1"
-    ipfs "~0.28.2"
+    ipfs ipfs/js-ipfs#master
     ipfs-api "^20.0.0"
     libp2p-websocket-star-rendezvous "^0.2.3"
     lodash "^4.17.5"
     lru-cache "^4.1.2"
-    orbit-db "~0.19.8"
+    orbit-db orbitdb/orbit-db#master
     protons "~1.0.1"
 
 "chlu-ipfs-support@https://github.com/ChluNetwork/chlu-ipfs-support.git":
@@ -1030,7 +1030,7 @@ chlu-wallet-support-js@ChluNetwork/chlu-wallet-support-js:
   dependencies:
     bip39 "^2.4.0"
     bitcoinjs-lib "^3.1.1"
-    blockcypher ChluNetwork/node-client#fixes
+    blockcypher "git+https://github.com/ChluNetwork/node-client.git"
     coinselect "^3.1.11"
     dotenv "4.0.0"
     es6-promisify "^5.0.0"
@@ -3834,7 +3834,7 @@ level-js@^2.2.4, level-js@~2.2.4:
     typedarray-to-buffer "~1.0.0"
     xtend "~2.1.2"
 
-"level-js@github:timkuijsten/level.js#idbunwrapper":
+level-js@timkuijsten/level.js#idbunwrapper:
   version "2.2.3"
   resolved "https://codeload.github.com/timkuijsten/level.js/tar.gz/18e03adab34c49523be7d3d58fafb0c632f61303"
   dependencies:
@@ -4731,7 +4731,7 @@ multihashing-async@~0.4.6, multihashing-async@~0.4.7, multihashing-async@~0.4.8:
     murmurhash3js "^3.0.1"
     nodeify "^1.0.1"
 
-"multiplex@github:dignifiedquire/multiplex":
+multiplex@dignifiedquire/multiplex:
   version "6.7.0"
   resolved "https://codeload.github.com/dignifiedquire/multiplex/tar.gz/b5d5edd30454e2c978ee8c52df86f5f4840d2eab"
   dependencies:
