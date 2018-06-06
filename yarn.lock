@@ -976,12 +976,12 @@ chlu-ipfs-support@ChluNetwork/chlu-ipfs-support:
     chlu-wallet-support-js ChluNetwork/chlu-wallet-support-js
     commander "^2.15.1"
     debounce-async "^0.0.1"
-    ipfs ipfs/js-ipfs#master
+    ipfs "~0.28.2"
     ipfs-api "^20.0.0"
     libp2p-websocket-star-rendezvous "^0.2.3"
     lodash "^4.17.5"
     lru-cache "^4.1.2"
-    orbit-db orbitdb/orbit-db#master
+    orbit-db "~0.19.8"
     protons "~1.0.1"
 
 "chlu-ipfs-support@https://github.com/ChluNetwork/chlu-ipfs-support.git":
@@ -1030,7 +1030,7 @@ chlu-wallet-support-js@ChluNetwork/chlu-wallet-support-js:
   dependencies:
     bip39 "^2.4.0"
     bitcoinjs-lib "^3.1.1"
-    blockcypher "git+https://github.com/ChluNetwork/node-client.git"
+    blockcypher ChluNetwork/node-client#fixes
     coinselect "^3.1.11"
     dotenv "4.0.0"
     es6-promisify "^5.0.0"
