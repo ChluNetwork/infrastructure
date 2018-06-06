@@ -1,12 +1,16 @@
 // PM2 Ecosystem File
 
 const path = require('path')
+const env = require('node-env-file')
 
 function projectPath(s) {
     return path.join('node_modules', s)
 }
 
+env(path.join(__dirname, '.env'))
+
 const home = process.env.HOME
+const blockcypherToken = process.env.BLOCKCYPHER_TOKEN
 
 module.exports = {
     /**
@@ -26,7 +30,7 @@ module.exports = {
             script: projectPath('chlu-ipfs-support/bin/chlu-service-node.js'),
             watch: false,
             // This is running on the master branch and does not require additional CLI params
-            args: 'start --network staging',
+            args: 'start --network staging' + (blockcypherToken ? ` --btc ${blockcypherToken}` : ''),
             max_memory_restart: '250M'
         },
         {

@@ -1,6 +1,9 @@
 {
     "port": 5000,
     "marketplaceLocation": "https://demomarket.chlu.io",
+    "chluIpfs": {
+        "network": "staging"
+    },
     "db": {
         "password": "chlurocks"
     }
