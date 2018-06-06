@@ -7,8 +7,8 @@
   resolved "https://registry.yarnpkg.com/@types/geojson/-/geojson-1.0.6.tgz#3e02972728c69248c2af08d60a48cbb8680fffdf"
 
 "@types/node@*":
-  version "10.0.6"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.0.6.tgz#c0bce8e539bf34c1b850c13ff46bead2fecc2e58"
+  version "10.3.1"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.3.1.tgz#51092fbacaed768a122a293814474fbf6e5e8b6d"
 
 abab@^1.0.3:
   version "1.0.4"
@@ -984,26 +984,12 @@ chlu-ipfs-support@ChluNetwork/chlu-ipfs-support:
     orbit-db "~0.19.8"
     protons "~1.0.1"
 
-"chlu-ipfs-support@https://github.com/ChluNetwork/chlu-ipfs-support.git":
-  version "0.1.0"
-  resolved "https://github.com/ChluNetwork/chlu-ipfs-support.git#14667e43c7f180e4524e2ffe6a86b0eb9931d800"
-  dependencies:
-    axios "^0.18.0"
-    bitcoinjs-lib "^3.3.2"
-    commander "^2.15.1"
-    debounce-async "^0.0.1"
-    ipfs "~0.28.0"
-    lodash "^4.17.5"
-    lru-cache "^4.1.2"
-    orbit-db "~0.19.7"
-    protons "~1.0.1"
-
 chlu-marketplace-js@ChluNetwork/chlu-marketplace-js:
   version "0.1.0"
-  resolved "https://codeload.github.com/ChluNetwork/chlu-marketplace-js/tar.gz/d8c7865bbc34437a3628f61a43ae65e22c76b77e"
+  resolved "https://codeload.github.com/ChluNetwork/chlu-marketplace-js/tar.gz/e82438e2c4645b89d0b684aeb69da4d5be78c153"
   dependencies:
     axios "^0.18.0"
-    chlu-ipfs-support "https://github.com/ChluNetwork/chlu-ipfs-support.git"
+    chlu-ipfs-support ChluNetwork/chlu-ipfs-support
     commander "^2.15.0"
     cors "^2.8.4"
     express "^4.16.2"
@@ -2788,7 +2774,7 @@ ipfs-unixfs@~0.1.14:
   dependencies:
     protons "^1.0.0"
 
-ipfs@^0.28.2, ipfs@~0.28.0, ipfs@~0.28.2:
+ipfs@^0.28.2, ipfs@~0.28.2:
   version "0.28.2"
   resolved "https://registry.yarnpkg.com/ipfs/-/ipfs-0.28.2.tgz#1e9806354fdeecd773ffa612c28953c9a1ac64a0"
   dependencies:
@@ -3834,7 +3820,7 @@ level-js@^2.2.4, level-js@~2.2.4:
     typedarray-to-buffer "~1.0.0"
     xtend "~2.1.2"
 
-level-js@timkuijsten/level.js#idbunwrapper:
+"level-js@github:timkuijsten/level.js#idbunwrapper":
   version "2.2.3"
   resolved "https://codeload.github.com/timkuijsten/level.js/tar.gz/18e03adab34c49523be7d3d58fafb0c632f61303"
   dependencies:
@@ -4630,14 +4616,14 @@ mixin-deep@^1.2.0:
     minimist "0.0.8"
 
 moment-timezone@^0.5.14:
-  version "0.5.16"
-  resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.5.16.tgz#661717d5f55b4d2c2e002262d726c83785192a5a"
+  version "0.5.17"
+  resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.5.17.tgz#3c8fef32051d84c3af174d91dc52977dcb0ad7e5"
   dependencies:
     moment ">= 2.9.0"
 
 "moment@>= 2.9.0", moment@^2.20.0:
-  version "2.22.1"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.22.1.tgz#529a2e9bf973f259c9643d237fda84de3a26e8ad"
+  version "2.22.2"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.22.2.tgz#3c257f9839fc0e93ff53149632239eb90783ff66"
 
 morgan@^1.9.0:
   version "1.9.0"
@@ -4708,8 +4694,8 @@ multicast-dns@^6.2.3:
     thunky "^1.0.2"
 
 multicodec@~0.2.5, multicodec@~0.2.6:
-  version "0.2.6"
-  resolved "https://registry.yarnpkg.com/multicodec/-/multicodec-0.2.6.tgz#9d2d6565fbc0815b139dfc906371fc39df4dfddb"
+  version "0.2.7"
+  resolved "https://registry.yarnpkg.com/multicodec/-/multicodec-0.2.7.tgz#44dcb902b7ccd8065c4c348fe9987acf14a0679d"
   dependencies:
     varint "^5.0.0"
 
@@ -4731,7 +4717,7 @@ multihashing-async@~0.4.6, multihashing-async@~0.4.7, multihashing-async@~0.4.8:
     murmurhash3js "^3.0.1"
     nodeify "^1.0.1"
 
-multiplex@dignifiedquire/multiplex:
+"multiplex@github:dignifiedquire/multiplex":
   version "6.7.0"
   resolved "https://codeload.github.com/dignifiedquire/multiplex/tar.gz/b5d5edd30454e2c978ee8c52df86f5f4840d2eab"
   dependencies:
@@ -5126,7 +5112,7 @@ orbit-db-store@~2.5.0:
     p-each-series "^1.0.0"
     readable-stream "~2.3.5"
 
-orbit-db@^0.19.7, orbit-db@~0.19.7, orbit-db@~0.19.8:
+orbit-db@^0.19.7, orbit-db@~0.19.8:
   version "0.19.8"
   resolved "https://codeload.github.com/orbitdb/orbit-db/tar.gz/07fc543ba6f2c99fd144292af983c46ef85e1fac"
   dependencies:
@@ -6132,8 +6118,8 @@ send@0.16.2:
     statuses "~1.4.0"
 
 sequelize@^4.35.1:
-  version "4.37.7"
-  resolved "https://registry.yarnpkg.com/sequelize/-/sequelize-4.37.7.tgz#a66bfb486f438c0584c1ccc8107388311ba34780"
+  version "4.37.10"
+  resolved "https://registry.yarnpkg.com/sequelize/-/sequelize-4.37.10.tgz#1ccca570956a5bfe1c4c00abbc927633ca8d12d8"
   dependencies:
     bluebird "^3.5.0"
     cls-bluebird "^2.1.0"
@@ -6603,8 +6589,8 @@ string_decoder@~1.1.1:
     safe-buffer "~5.1.0"
 
 stringstream@~0.0.4:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/stringstream/-/stringstream-0.0.5.tgz#4e484cd4de5a0bbbee18e46307710a8a81621878"
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/stringstream/-/stringstream-0.0.6.tgz#7880225b0d4ad10e30927d167a1d6f2fd3b33a72"
 
 strip-ansi@^3.0.0, strip-ansi@^3.0.1:
   version "3.0.1"
@@ -6761,9 +6747,10 @@ term-size@^1.2.0:
     execa "^0.7.0"
 
 terraformer-wkt-parser@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/terraformer-wkt-parser/-/terraformer-wkt-parser-1.1.2.tgz#336a0c8fc82094a5aff83288f69aedecd369bf0c"
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/terraformer-wkt-parser/-/terraformer-wkt-parser-1.2.0.tgz#c9d6ac3dff25f4c0bd344e961f42694961834c34"
   dependencies:
+    "@types/geojson" "^1.0.0"
     terraformer "~1.0.5"
 
 terraformer@~1.0.5:
@@ -7193,8 +7180,8 @@ window-size@0.1.0:
   resolved "https://registry.yarnpkg.com/window-size/-/window-size-0.1.0.tgz#5438cd2ea93b202efa3a19fe8887aee7c94f9c9d"
 
 wkx@^0.4.1:
-  version "0.4.4"
-  resolved "https://registry.yarnpkg.com/wkx/-/wkx-0.4.4.tgz#cf751b672e4b45e162f9fd30124878e73d96c9b2"
+  version "0.4.5"
+  resolved "https://registry.yarnpkg.com/wkx/-/wkx-0.4.5.tgz#a85e15a6e69d1bfaec2f3c523be3dfa40ab861d0"
   dependencies:
     "@types/node" "*"
 
