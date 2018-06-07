@@ -4,7 +4,7 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "chlu-did-service": "ChluNetwork/chlu-did-service#fix-chlu-did",
+    "chlu-did-service": "ChluNetwork/chlu-did-service",
     "chlu-ipfs-support": "ChluNetwork/chlu-ipfs-support",
     "chlu-marketplace-js": "ChluNetwork/chlu-marketplace-js",
     "chlu-reputation-service-node": "ChluNetwork/chlu-service-node",
