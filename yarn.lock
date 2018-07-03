@@ -651,21 +651,6 @@ body-parser@1.18.2:
     raw-body "2.3.2"
     type-is "~1.6.15"
 
-body-parser@^1.18.2:
-  version "1.18.3"
-  resolved "https://registry.yarnpkg.com/body-parser/-/body-parser-1.18.3.tgz#5b292198ffdd553b3a0f20ded0592b956955c8b4"
-  dependencies:
-    bytes "3.0.0"
-    content-type "~1.0.4"
-    debug "2.6.9"
-    depd "~1.1.2"
-    http-errors "~1.6.3"
-    iconv-lite "0.4.23"
-    on-finished "~2.3.0"
-    qs "6.5.2"
-    raw-body "2.3.3"
-    type-is "~1.6.16"
-
 boom@2.x.x:
   version "2.10.1"
   resolved "https://registry.yarnpkg.com/boom/-/boom-2.10.1.tgz#39c8918ceff5799f83f9492a848f625add0c766f"
@@ -962,14 +947,13 @@ chloride@^2.2.8:
   optionalDependencies:
     sodium-native "^2.1.6"
 
-chlu-did-service@ChluNetwork/chlu-did-service:
+chlu-did-service@ChluNetwork/chlu-did-service#upgrade-chlu:
   version "1.0.0"
-  resolved "https://codeload.github.com/ChluNetwork/chlu-did-service/tar.gz/723fde936fcb666b0c401ae66547b94586c16db4"
+  resolved "https://codeload.github.com/ChluNetwork/chlu-did-service/tar.gz/22a72552540467900473cb29c45e1136a1d3eec0"
   dependencies:
-    chlu-did ChluNetwork/chlu-did
+    chlu-ipfs-support ChluNetwork/chlu-ipfs-support#protobuf-upgrade
+    commander "^2.15.1"
     express "^4.16.3"
-    ipfs "^0.28.2"
-    orbit-db "^0.19.8"
 
 chlu-did@ChluNetwork/chlu-did:
   version "1.0.0"
@@ -981,16 +965,18 @@ chlu-did@ChluNetwork/chlu-did:
     js-sha3 "^0.7.0"
     jsonld-signatures "2.3.0"
 
-chlu-ipfs-support@ChluNetwork/chlu-ipfs-support:
-  version "0.1.0"
-  resolved "https://codeload.github.com/ChluNetwork/chlu-ipfs-support/tar.gz/28a99e7eca448740a127035d4a9751671fdbec21"
+chlu-ipfs-support@ChluNetwork/chlu-ipfs-support#protobuf-upgrade:
+  version "0.2.0"
+  resolved "https://codeload.github.com/ChluNetwork/chlu-ipfs-support/tar.gz/617e1f3691eb560457cde046c0d0cffe0136e1b0"
   dependencies:
     axios "^0.18.0"
-    bitcoinjs-lib "^3.3.2"
-    blockcypher ChluNetwork/node-client#fixes
+    blockcypher ChluNetwork/node-client
+    brorand "^1.1.0"
+    chlu-did ChluNetwork/chlu-did
     chlu-wallet-support-js ChluNetwork/chlu-wallet-support-js
     commander "^2.15.1"
     debounce-async "^0.0.1"
+    elliptic "^6.4.0"
     ipfs "~0.28.2"
     ipfs-api "^20.0.0"
     libp2p-websocket-star-rendezvous "^0.2.3"
@@ -999,49 +985,22 @@ chlu-ipfs-support@ChluNetwork/chlu-ipfs-support:
     orbit-db "~0.19.8"
     protons "~1.0.1"
 
-"chlu-ipfs-support@https://github.com/ChluNetwork/chlu-ipfs-support.git":
+chlu-marketplace-js@ChluNetwork/chlu-marketplace-js#upgrade-chlu:
   version "0.1.0"
-  resolved "https://github.com/ChluNetwork/chlu-ipfs-support.git#078adf4dc86f43b92408f936e8e14de788f0ac8e"
+  resolved "https://codeload.github.com/ChluNetwork/chlu-marketplace-js/tar.gz/50532e2ce1fd674af090b43e0475698b4dfd4942"
   dependencies:
     axios "^0.18.0"
-    bitcoinjs-lib "^3.3.2"
-    blockcypher ChluNetwork/node-client#fixes
-    chlu-wallet-support-js ChluNetwork/chlu-wallet-support-js
-    commander "^2.15.1"
-    debounce-async "^0.0.1"
-    ipfs "~0.28.2"
-    ipfs-api "^20.0.0"
-    libp2p-websocket-star-rendezvous "^0.2.3"
-    lodash "^4.17.5"
-    lru-cache "^4.1.2"
-    orbit-db "~0.19.8"
-    protons "~1.0.1"
-
-chlu-marketplace-js@ChluNetwork/chlu-marketplace-js:
-  version "0.1.0"
-  resolved "https://codeload.github.com/ChluNetwork/chlu-marketplace-js/tar.gz/e82438e2c4645b89d0b684aeb69da4d5be78c153"
-  dependencies:
-    axios "^0.18.0"
-    chlu-ipfs-support ChluNetwork/chlu-ipfs-support
+    chlu-ipfs-support ChluNetwork/chlu-ipfs-support#protobuf-upgrade
     commander "^2.15.0"
     cors "^2.8.4"
     express "^4.16.2"
     mkdirp "^0.5.1"
+    moment "^2.22.2"
     morgan "^1.9.0"
     multihashes "^0.4.13"
+    rimraf "^2.6.2"
     sequelize "^4.35.1"
     sqlite3 "^3.1.13"
-
-chlu-reputation-service-node@ChluNetwork/chlu-service-node:
-  version "1.0.0"
-  resolved "https://codeload.github.com/ChluNetwork/chlu-service-node/tar.gz/58dbe258ac8eed260d968e6e7e60fc20d5395319"
-  dependencies:
-    body-parser "^1.18.2"
-    commander "^2.15.1"
-    cors "^2.8.4"
-    express "^4.16.3"
-    ipfs "^0.28.2"
-    orbit-db "^0.19.8"
 
 chlu-wallet-support-js@ChluNetwork/chlu-wallet-support-js:
   version "0.0.1"
@@ -2447,7 +2406,7 @@ http-errors@1.6.2:
     setprototypeof "1.0.3"
     statuses ">= 1.3.1 < 2"
 
-http-errors@1.6.3, http-errors@~1.6.2, http-errors@~1.6.3:
+http-errors@~1.6.2:
   version "1.6.3"
   resolved "https://registry.yarnpkg.com/http-errors/-/http-errors-1.6.3.tgz#8b55680bb4be283a0b5bf4ea2e38580be1d9320d"
   dependencies:
@@ -2482,7 +2441,7 @@ iconv-lite@0.4.19:
   version "0.4.19"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.19.tgz#f7468f60135f5e5dad3399c0a81be9a1603a082b"
 
-iconv-lite@0.4.23, iconv-lite@^0.4.4:
+iconv-lite@^0.4.4:
   version "0.4.23"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.23.tgz#297871f63be507adcfbfca715d0cd0eed84e9a63"
   dependencies:
@@ -2807,7 +2766,7 @@ ipfs-unixfs@~0.1.14:
   dependencies:
     protons "^1.0.0"
 
-ipfs@^0.28.2, ipfs@~0.28.2:
+ipfs@~0.28.2:
   version "0.28.2"
   resolved "https://registry.yarnpkg.com/ipfs/-/ipfs-0.28.2.tgz#1e9806354fdeecd773ffa612c28953c9a1ac64a0"
   dependencies:
@@ -3853,7 +3812,7 @@ level-js@^2.2.4, level-js@~2.2.4:
     typedarray-to-buffer "~1.0.0"
     xtend "~2.1.2"
 
-"level-js@github:timkuijsten/level.js#idbunwrapper":
+level-js@timkuijsten/level.js#idbunwrapper:
   version "2.2.3"
   resolved "https://codeload.github.com/timkuijsten/level.js/tar.gz/18e03adab34c49523be7d3d58fafb0c632f61303"
   dependencies:
@@ -4654,7 +4613,7 @@ moment-timezone@^0.5.14:
   dependencies:
     moment ">= 2.9.0"
 
-"moment@>= 2.9.0", moment@^2.20.0:
+"moment@>= 2.9.0", moment@^2.20.0, moment@^2.22.2:
   version "2.22.2"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.22.2.tgz#3c257f9839fc0e93ff53149632239eb90783ff66"
 
@@ -4750,7 +4709,7 @@ multihashing-async@~0.4.6, multihashing-async@~0.4.7, multihashing-async@~0.4.8:
     murmurhash3js "^3.0.1"
     nodeify "^1.0.1"
 
-"multiplex@github:dignifiedquire/multiplex":
+multiplex@dignifiedquire/multiplex:
   version "6.7.0"
   resolved "https://codeload.github.com/dignifiedquire/multiplex/tar.gz/b5d5edd30454e2c978ee8c52df86f5f4840d2eab"
   dependencies:
@@ -5145,7 +5104,7 @@ orbit-db-store@~2.5.0:
     p-each-series "^1.0.0"
     readable-stream "~2.3.5"
 
-orbit-db@^0.19.8, orbit-db@~0.19.8:
+orbit-db@~0.19.8:
   version "0.19.8"
   resolved "https://codeload.github.com/orbitdb/orbit-db/tar.gz/07fc543ba6f2c99fd144292af983c46ef85e1fac"
   dependencies:
@@ -5743,7 +5702,7 @@ qs@6.5.1:
   version "6.5.1"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.1.tgz#349cdf6eef89ec45c12d7d5eb3fc0c870343a6d8"
 
-qs@6.5.2, qs@^6.5.1, qs@^6.5.2, qs@~6.5.1:
+qs@^6.5.1, qs@^6.5.2, qs@~6.5.1:
   version "6.5.2"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
 
@@ -5776,15 +5735,6 @@ raw-body@2.3.2:
     bytes "3.0.0"
     http-errors "1.6.2"
     iconv-lite "0.4.19"
-    unpipe "1.0.0"
-
-raw-body@2.3.3:
-  version "2.3.3"
-  resolved "https://registry.yarnpkg.com/raw-body/-/raw-body-2.3.3.tgz#1b324ece6b5706e153855bc1148c65bb7f6ea0c3"
-  dependencies:
-    bytes "3.0.0"
-    http-errors "1.6.3"
-    iconv-lite "0.4.23"
     unpipe "1.0.0"
 
 rc@^1.0.1, rc@^1.1.6, rc@^1.1.7:
@@ -6029,7 +5979,7 @@ right-align@^0.1.1:
   dependencies:
     align-text "^0.1.1"
 
-rimraf@2, rimraf@^2.5.1, rimraf@^2.6.1:
+rimraf@2, rimraf@^2.5.1, rimraf@^2.6.1, rimraf@^2.6.2:
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.6.2.tgz#2ed8150d24a16ea8651e6d6ef0f47c4158ce7a36"
   dependencies:

@@ -41,17 +41,10 @@ module.exports = {
             max_memory_restart: '250M'
         },
         {
-            name: 'chlu-reputation-service-node',
-            script: projectPath('chlu-reputation-service-node/index.js'),
-            watch: false,
-            args: 'start --port 3001',
-            max_memory_restart: '250M'
-        },
-        {
             name: 'chlu-did-service',
             script: projectPath('chlu-did-service/index.js'),
             watch: false,
-            args: '',
+            args: 'start --network staging',
             max_memory_restart: '250M'
         }
     ],
