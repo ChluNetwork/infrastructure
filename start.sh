@@ -1,4 +1,4 @@
 #!/bin/sh
 
-yarn
+yarn --frozen-lockfile
 pm2 start ./ecosystem.config.js
