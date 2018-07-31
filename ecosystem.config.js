@@ -18,26 +18,42 @@ module.exports = {
      * http://pm2.keymetrics.io/docs/usage/application-declaration/
      */
     apps: [
-        {
-            name: 'chlu-marketplace',
-            script: projectPath('chlu-marketplace-js/src/bin/index.js'),
-            watch: false,
-            args: 'serve -c marketplace-config.json',
-            max_memory_restart: '250M'
-        },
-        {
-            name: 'chlu-service-node',
-            script: projectPath('chlu-ipfs-support/bin/chlu-service-node.js'),
-            watch: false,
-            // This is running on the master branch and does not require additional CLI params
-            args: `start --network ${network} ` + (blockcypherToken ? ` --btc ${blockcypherToken}` : ''),
-            max_memory_restart: '250M'
-        },
+        // Low-level services necessary for Chlu ecosystem
         {
             name: 'rendezvous',
             script: projectPath('libp2p-websocket-star-rendezvous/src/bin.js'),
             watch: false,
             args: '--port=4003',
+            max_memory_restart: '250M'
+        },
+        {
+            name: 'chlu-collector',
+            script: projectPath('chlu-collector/src/bin.js'),
+            watch: false,
+            args: `start --network ${network} ` + (blockcypherToken ? ` --btc ${blockcypherToken}` : ''),
+            max_memory_restart: '250M'
+        },
+        // Mid-level services (API Gateways)
+        {
+            name: 'chlu-api-query',
+            script: projectPath('chlu-api-query/src/bin.js'),
+            watch: false,
+            args: `start --network ${network} ` + (blockcypherToken ? ` --btc ${blockcypherToken}` : ''),
+            max_memory_restart: '250M'
+        },
+        {
+            name: 'chlu-api-publish',
+            script: projectPath('chlu-api-publish/src/bin.js'),
+            watch: false,
+            args: `start --network ${network} ` + (blockcypherToken ? ` --btc ${blockcypherToken}` : ''),
+            max_memory_restart: '250M'
+        },
+        // High-level services built on Chlu libraries
+        {
+            name: 'chlu-marketplace',
+            script: projectPath('chlu-marketplace-js/src/bin/index.js'),
+            watch: false,
+            args: 'serve -c marketplace-config.json',
             max_memory_restart: '250M'
         },
         {
