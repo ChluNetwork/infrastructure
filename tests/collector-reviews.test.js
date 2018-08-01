@@ -72,7 +72,7 @@ describe('Integration: Chlu Collector and Review Records', function() {
         customerNode.ipfs = customerIpfs;
 
         // Spies
-        sinon.spy(serviceNode.pinning, 'pin');
+        sinon.spy(serviceNode, 'pin');
     
         // Stubs
         const crypto = cryptoTestUtils(serviceNode);
@@ -100,10 +100,10 @@ describe('Integration: Chlu Collector and Review Records', function() {
         await serviceNode.didIpfsHelper.publish(v, false)
         await serviceNode.didIpfsHelper.publish(m, false)
         // wait until Customer DID is replicated into Service Node's OrbitDB
-        await serviceNode.orbitDb.getDID(customerNode.didIpfsHelper.didId, true)
+        await serviceNode.getDID(customerNode.didIpfsHelper.didId, true)
         // wait for customer node to have DIDs for vendor and marketplace
-        await customerNode.orbitDb.getDID(v.publicDidDocument.id, true)
-        await customerNode.orbitDb.getDID(m.publicDidDocument.id, true)
+        await customerNode.getDID(v.publicDidDocument.id, true)
+        await customerNode.getDID(m.publicDidDocument.id, true)
         // IMPORTANT note for the future: do not parallelize these operations,
         // it introduces some kind of OrbitDB bug where the tests fail intermittently
     });
@@ -126,7 +126,7 @@ describe('Integration: Chlu Collector and Review Records', function() {
         customerNode.bitcoin.api.returnMatchingTXForRR(Object.assign({}, rr, { multihash }));
     }
 
-    it('handles Unverified Reviews', async () => {
+    it('collector handles Unverified Reviews', async () => {
         // Create fake review record
         let reviewRecord = makeUnverified(await getFakeReviewRecord())
         // import reviews and await for completion
@@ -137,7 +137,7 @@ describe('Integration: Chlu Collector and Review Records', function() {
         // check hash validity
         expect(hash).to.be.a('string').that.is.not.empty;
         // the service node should already have pinned the hash
-        expect(serviceNode.pinning.pin.calledWith(hash)).to.be.true;
+        expect(serviceNode.pin.calledWith(hash)).to.be.true;
         // check that reading works
         const readRecord = await serviceNode.readReviewRecord(hash);
         expect(readRecord.editable).to.be.false;
@@ -147,7 +147,7 @@ describe('Integration: Chlu Collector and Review Records', function() {
             .to.contain(hash)
     })
 
-    it('handles Verified Reviews', async () => {
+    it('collector handles Verified Reviews', async () => {
         // Create fake review record
         let reviewRecord = await getFakeReviewRecord();
         reviewRecord.popr = await preparePoPR(reviewRecord.popr, vm, v, m);
@@ -166,21 +166,21 @@ describe('Integration: Chlu Collector and Review Records', function() {
         // check hash validity
         expect(hash).to.be.a('string').that.is.not.empty;
         // the service node should already have pinned the hash
-        expect(serviceNode.pinning.pin.calledWith(hash)).to.be.true;
+        expect(serviceNode.pin.calledWith(hash)).to.be.true;
         // check that reading works
         const readRecord = await serviceNode.readReviewRecord(hash);
         expect(readRecord.editable).to.be.false;
         expect(strip(readRecord)).to.deep.equal(strip(customerRecord));
         // check orbit-db by did indexing
-        expect(await serviceNode.orbitDb.getReviewsWrittenByDID(readRecord.customer_signature.creator))
+        expect(await serviceNode.getReviewsWrittenByDID(readRecord.customer_signature.creator))
             .to.contain(hash)
-        expect(await serviceNode.orbitDb.getReviewsAboutDID(readRecord.popr.vendor_did))
+        expect(await serviceNode.getReviewsAboutDID(readRecord.popr.vendor_did))
             .to.contain(hash)
     });
 
     describe('Verified Review Updates', () => {
 
-        it('handles updates', async () => {
+        it('collector handles updates', async () => {
             // Create fake review record
             let reviewRecord = await getFakeReviewRecord();
             reviewRecord.popr = await preparePoPR(reviewRecord.popr, vm, v, m);
@@ -198,7 +198,7 @@ describe('Integration: Chlu Collector and Review Records', function() {
                 bitcoinTransactionHash: btcUtils.exampleTransaction.hash
             });
             // Check that the review list is updated
-            expect((await customerNode.orbitDb.getReviewRecordList())[0]).to.equal(multihash);
+            expect((await customerNode.getReviewList())).to.contain(multihash);
             // Store the update
             reviewUpdate.previous_version_multihash = multihash
             const updatedMultihash = await customerNode.storeReviewRecord(reviewUpdate);
@@ -207,7 +207,7 @@ describe('Integration: Chlu Collector and Review Records', function() {
             expect(strip(rr)).to.deep.equal(strip(rrUpdate));
         });
 
-        it('handles updates happening after a read', async () => {
+        it('collector handles updates happening after a read', async () => {
             await new Promise(async (resolve, reject) => {
                 // Create fake review record
                 let reviewRecord = await getFakeReviewRecord();
@@ -244,7 +244,7 @@ describe('Integration: Chlu Collector and Review Records', function() {
             });
         });
 
-        it('handles updates written by the current node', async () => {
+        it('collector handles updates written by the current node', async () => {
             // Create fake review record
             let reviewRecord = await getFakeReviewRecord();
             reviewRecord.popr = await preparePoPR(reviewRecord.popr, vm, v, m);
@@ -269,7 +269,7 @@ describe('Integration: Chlu Collector and Review Records', function() {
             expect(strip(rrUpdate)).to.deep.equal(strip(rr));
         });
 
-        it('handles updates after the read, written by the current node', async () => {
+        it('collector handles updates after the read, written by the current node', async () => {
             await new Promise(async (resolve, reject) => {
                 // Create fake review record
                 let reviewRecord = await getFakeReviewRecord();
@@ -307,5 +307,10 @@ describe('Integration: Chlu Collector and Review Records', function() {
                 await customerNode.storeReviewRecord(reviewUpdate);
             });
         });
+    })
+
+    describe('Integration: Collector and DIDs', () => {
+        it('Collector handles DID publishing')
+        it('Collector handles DID updates')
     })
 });
