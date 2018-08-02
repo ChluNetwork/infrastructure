@@ -3,6 +3,7 @@ const ChluAPIClient = require('chlu-api-client')
 const ChluAPIQuery = require('chlu-api-query')
 const ChluAPIPublish = require('chlu-api-publish')
 const ChluCollector = require('chlu-collector')
+const startMarketplace = require('chlu-marketplace-js/src/bin/serve.js')
 const logger = require('chlu-ipfs-support/tests/utils/logger');
 const { createIPFS } = require('chlu-ipfs-support/tests/utils/ipfs');
 const { getFakeReviewRecord } = require('chlu-ipfs-support/tests/utils/protobuf');
@@ -22,9 +23,11 @@ function getTestDir(name, date) {
     return path.join(os.tmpdir(), `chlu-integration-test-${date}`, name)
 }
 
-describe('Integration: API Client + ChluIPFS with Query+Publish API Servers and Collector', () => {
+const marketplacePort = 3101
 
-    let api, customer, publishServer, queryServer, collector, preparePoPR, vm, v, m, makeDID
+describe.only('Integration: API Client + ChluIPFS with Query+Publish API Servers and Collector', () => {
+
+    let api, customer, vendor, publishServer, queryServer, collector, preparePoPR, vm, v, m, makeDID, mkt
 
     const verbose = false // set this to true to get all components to log debug strings
 
@@ -68,6 +71,13 @@ describe('Integration: API Client + ChluIPFS with Query+Publish API Servers and 
         customer.ipfs = await createIPFS({
             repo: getTestDir('customer/ipfs', date)
         })
+        vendor = new ChluIPFS({
+            directory: getTestDir('vendor', date),
+            logger: logger('Vendor', verbose)
+        })
+        vendor.ipfs = await createIPFS({
+            repo: getTestDir('vendor/ipfs', date)
+        })
         collector = new ChluIPFS({
             directory: getTestDir('collector', date),
             logger: logger('Collector', verbose)
@@ -76,6 +86,24 @@ describe('Integration: API Client + ChluIPFS with Query+Publish API Servers and 
             repo: getTestDir('collector/ipfs', date)
         })
         collector.collector = new ChluCollector(collector)
+
+        const marketplace = await startMarketplace(marketplacePort, {
+            marketplaceLocation: `http://localhost:${marketplacePort}`,
+            chluIpfs: {
+                network: 'experimental',
+                directory: getTestDir('marketplace', date),
+                logger: logger('Chlu Marketplace', verbose)
+            },
+            db: {
+                password: 'test',
+                storage: path.join(getTestDir('marketplace/db'), 'db.sqlite')
+            },
+            ipfs: await createIPFS({
+                repo: getTestDir('marketplace/ipfs', date)
+            })
+        })
+        mkt = marketplace.mkt
+
         // Spies and mocks
         sinon.spy(collector, 'pin') // Spy pinning activity of Collector
 
@@ -105,6 +133,10 @@ describe('Integration: API Client + ChluIPFS with Query+Publish API Servers and 
         await api.start()
         await customer.start()
         await customer.importDID(await api.exportDID(), false)
+        await vendor.start()
+
+        await vendor.vendor.registerToMarketplace(`http://localhost:${marketplacePort}`)
+        v = await vendor.exportDID()
 
         // Do some DID prework to make sure nodes have everything they need
 
@@ -127,13 +159,26 @@ describe('Integration: API Client + ChluIPFS with Query+Publish API Servers and 
     })
 
     after(async () => {
-        await collector.collector.stop()
-        await Promise.all([api.stop(), customer.stop(), publishServer.stop(), queryServer.stop(), collector.stop()]);
+        try {
+            await collector.collector.stop()
+            await api.stop()
+            await customer.stop()
+            await publishServer.stop()
+            await queryServer.stop()
+            await mkt.stop()
+            await collector.stop()
+        } catch(error){
+            console.log(error)
+        }
+        cleanup()
+    })
+
+    function cleanup() {
         rimraf.sync(publishServer.chluIpfs.directory);
         rimraf.sync(collector.directory);
         rimraf.sync(queryServer.chluIpfs.directory);
         rimraf.sync(api.directory);
-    })
+    }
 
     function setupBtcMock(multihash, rr) {
         // delete cached info, since we are about to change it
@@ -258,7 +303,11 @@ describe('Integration: API Client + ChluIPFS with Query+Publish API Servers and 
     })
 
     describe('API Client and Marketplace', () => {
-        it('API Client registers as Vendor')
+        it('API Client registers as Vendor', async () => {
+            const vendorData = await mkt.getVendor(vendor.didIpfsHelper.didId)
+            expect(vendorData.vDidId).to.equal(vendor.didIpfsHelper.didId)
+            expect(vendorData.vSignature).to.be.a('string')
+        })
     })
 })
 
