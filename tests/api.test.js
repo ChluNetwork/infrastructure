@@ -7,8 +7,6 @@ const startMarketplace = require('chlu-marketplace-js/src/bin/serve.js')
 const logger = require('chlu-ipfs-support/tests/utils/logger');
 const { createIPFS } = require('chlu-ipfs-support/tests/utils/ipfs');
 const { getFakeReviewRecord } = require('chlu-ipfs-support/tests/utils/protobuf');
-const cryptoTestUtils = require('chlu-ipfs-support/tests/utils/crypto');
-const fakeHttpModule = require('chlu-ipfs-support/tests/utils/http');
 const btcUtils = require('chlu-ipfs-support/tests/utils/bitcoin');
 const path = require('path')
 const os = require('os')
@@ -25,9 +23,9 @@ function getTestDir(name, date) {
 
 const marketplacePort = 3101
 
-describe.only('Integration: API Client + ChluIPFS with Query+Publish API Servers and Collector', () => {
+describe('Integration: API Client + ChluIPFS with Query+Publish API Servers and Collector', () => {
 
-    let api, customer, vendor, publishServer, queryServer, collector, preparePoPR, vm, v, m, makeDID, mkt
+    let api, customer, vendor, publishServer, queryServer, collector, makeDID, mkt
 
     const verbose = false // set this to true to get all components to log debug strings
 
@@ -108,18 +106,6 @@ describe.only('Integration: API Client + ChluIPFS with Query+Publish API Servers
         sinon.spy(collector, 'pin') // Spy pinning activity of Collector
 
         // Set up mocks to make validator work
-        const crypto = cryptoTestUtils(collector);
-        const makeKeyPair = crypto.makeKeyPair;
-        makeDID = crypto.makeDID
-        preparePoPR = crypto.preparePoPR;
-        vm = await makeKeyPair();
-        v = await makeDID();
-        m = await makeDID();
-        const http = fakeHttpModule(() => ({ didId: m.publicDidDocument.id }));
-        collector.http = http;
-        customer.http = http;
-        queryServer.chluIpfs.http = http;
-        publishServer.chluIpfs.http = http;
         publishServer.chluIpfs.bitcoin.Blockcypher = btcUtils.BlockcypherMock;
         queryServer.chluIpfs.bitcoin.Blockcypher = btcUtils.BlockcypherMock;
         collector.bitcoin.Blockcypher = btcUtils.BlockcypherMock;
@@ -136,13 +122,11 @@ describe.only('Integration: API Client + ChluIPFS with Query+Publish API Servers
         await vendor.start()
 
         await vendor.vendor.registerToMarketplace(`http://localhost:${marketplacePort}`)
-        v = await vendor.exportDID()
+        const v = await vendor.exportDID()
+        const m = await mkt.chluIpfs.exportDID()
 
         // Do some DID prework to make sure nodes have everything they need
 
-        // Publish Vendor and Marketplace DIDs from service node
-        await collector.didIpfsHelper.publish(v, false)
-        await collector.didIpfsHelper.publish(m, false)
         // wait until API Client DID is replicated
         await queryServer.chluIpfs.getDID(api.didIpfsHelper.didId, true)
         await customer.getDID(api.didIpfsHelper.didId, true)
@@ -193,6 +177,13 @@ describe.only('Integration: API Client + ChluIPFS with Query+Publish API Servers
         queryServer.chluIpfs.bitcoin.api.returnMatchingTXForRR(Object.assign({}, rr, { multihash }));
     }
 
+    async function preparePoPR(poprData) {
+        const vendorId = vendor.didIpfsHelper.didId
+        const { popr } = await mkt.createPoPR(vendorId, poprData)
+        expect(popr.marketplace_url).to.equal(`http://localhost:${marketplacePort}`)
+        return popr
+    }
+
     describe('API Client + Customer ChluIPFS with API Servers', () => {
 
         it('client DID generated when starting is published', async () => {
@@ -208,7 +199,7 @@ describe.only('Integration: API Client + ChluIPFS with Query+Publish API Servers
 
         it('ChluIPFS stores a verified review record, then API Client reads it', async () => {
             const reviewRecord = await getFakeReviewRecord()
-            reviewRecord.popr = await preparePoPR(reviewRecord.popr, vm, v, m);
+            reviewRecord.popr = await preparePoPR(reviewRecord.popr);
             // Store the RR
             const multihash = await customer.storeReviewRecord(reviewRecord, {
                 publish: false
@@ -236,7 +227,7 @@ describe.only('Integration: API Client + ChluIPFS with Query+Publish API Servers
         })
 
         it('API Client publishes a DID, then reads it', async () => {
-            const did = await makeDID()
+            const did = await api.didIpfsHelper.chluDID.generateDID()
             collector.didIpfsHelper.publish(did)
             const result = await api.getDID(did.publicDidDocument.id, true)
             expect(result).to.deep.equal(did.publicDidDocument)
@@ -244,7 +235,7 @@ describe.only('Integration: API Client + ChluIPFS with Query+Publish API Servers
 
         it('ChluIPFS publishes a review, then API Client reads review records by author', async () => {
             const reviewRecord = await getFakeReviewRecord()
-            reviewRecord.popr = await preparePoPR(reviewRecord.popr, vm, v, m);
+            reviewRecord.popr = await preparePoPR(reviewRecord.popr);
             // Store the RR
             const multihash = await customer.storeReviewRecord(reviewRecord, {
                 publish: false
@@ -273,7 +264,7 @@ describe.only('Integration: API Client + ChluIPFS with Query+Publish API Servers
 
         it('ChluIPFS publishes a review, then API Client reads review records by subject', async () => {
             const reviewRecord = await getFakeReviewRecord()
-            reviewRecord.popr = await preparePoPR(reviewRecord.popr, vm, v, m);
+            reviewRecord.popr = await preparePoPR(reviewRecord.popr);
             // Store the RR
             const multihash = await customer.storeReviewRecord(reviewRecord, {
                 publish: false
@@ -289,12 +280,12 @@ describe.only('Integration: API Client + ChluIPFS with Query+Publish API Servers
             // Read it from Query Server
             const rr = await queryServer.chluIpfs.readReviewRecord(multihash)
             // Make sure Subject DID is correct
-            expect(rr.popr.vendor_did).to.equal(v.publicDidDocument.id)
+            expect(rr.popr.vendor_did).to.equal(vendor.didIpfsHelper.didId)
             // Check reviews by author
             let reviewsBySubject
             do {
                 // It might not be correct right away, need to wait for orbit-db to replicate
-                reviewsBySubject = await api.getReviewsAboutDID(v.publicDidDocument.id)
+                reviewsBySubject = await api.getReviewsAboutDID(vendor.didIpfsHelper.didId)
                 if (reviewsBySubject.length < 1) await waitMs(1000)
             } while(reviewsBySubject.length < 1)
             expect(reviewsBySubject).to.contain(multihash)

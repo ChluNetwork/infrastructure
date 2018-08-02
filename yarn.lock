@@ -1011,7 +1011,7 @@ chlu-api-client@ChluNetwork/chlu-api-client-js#implementation:
 
 chlu-api-publish@ChluNetwork/chlu-api-publish#implementation:
   version "0.1.0"
-  resolved "https://codeload.github.com/ChluNetwork/chlu-api-publish/tar.gz/5a7e6c78674bc301073c17cb9734938fa5cf0205"
+  resolved "https://codeload.github.com/ChluNetwork/chlu-api-publish/tar.gz/ecaadbec3128ca0cfcb390caa78ba299a0bbcc65"
   dependencies:
     body-parser "^1.18.3"
     chlu-ipfs-support ChluNetwork/chlu-ipfs-support#misc-features
@@ -1079,7 +1079,7 @@ chlu-ipfs-support@ChluNetwork/chlu-ipfs-support#misc-features:
 
 chlu-marketplace-js@ChluNetwork/chlu-marketplace-js#upgrade-chlu2:
   version "0.1.0"
-  resolved "https://codeload.github.com/ChluNetwork/chlu-marketplace-js/tar.gz/b4673221038857bb333c76950ebd81ac362fb5b5"
+  resolved "https://codeload.github.com/ChluNetwork/chlu-marketplace-js/tar.gz/73145c8e7f91da01de00347a1d79503712dedd81"
   dependencies:
     axios "^0.18.0"
     chlu-ipfs-support ChluNetwork/chlu-ipfs-support#misc-features
