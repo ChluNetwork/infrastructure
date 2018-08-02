@@ -4,9 +4,8 @@ const ChluAPIQuery = require('chlu-api-query')
 const ChluAPIPublish = require('chlu-api-publish')
 const ChluCollector = require('chlu-collector')
 const logger = require('chlu-ipfs-support/tests/utils/logger');
-const { startRendezvousServer } = require('chlu-collector/src/rendezvous')
 const { createIPFS } = require('chlu-ipfs-support/tests/utils/ipfs');
-const { getFakeReviewRecord, makeUnverified } = require('chlu-ipfs-support/tests/utils/protobuf');
+const { getFakeReviewRecord } = require('chlu-ipfs-support/tests/utils/protobuf');
 const cryptoTestUtils = require('chlu-ipfs-support/tests/utils/crypto');
 const fakeHttpModule = require('chlu-ipfs-support/tests/utils/http');
 const btcUtils = require('chlu-ipfs-support/tests/utils/bitcoin');
@@ -17,19 +16,20 @@ const expect = require('chai').expect
 const { get } = require('lodash')
 const sinon = require('sinon')
 
+require('./index.js')
+
 function getTestDir(name, date) {
     return path.join(os.tmpdir(), `chlu-integration-test-${date}`, name)
 }
 
-describe('Integration: API Client with Query and Publish API Servers and Collector', () => {
+describe('Integration: API Client + ChluIPFS with Query+Publish API Servers and Collector', () => {
 
-    let api, publishServer, queryServer, rendezvous, vm, v, m
+    let api, customer, publishServer, queryServer, collector, preparePoPR, vm, v, m, makeDID
 
     const verbose = false // set this to true to get all components to log debug strings
 
     before(async () => {
         const date = Date.now()
-        rendezvous = await startRendezvousServer(ChluIPFS.rendezvousPorts.test);
         // Use custom port so it does not conflict
         const queryPort = 3105
         const publishPort = 3106
@@ -61,6 +61,13 @@ describe('Integration: API Client with Query and Publish API Servers and Collect
             directory: getTestDir('api-client', date),
             logger: logger('Client', verbose),
         })
+        customer = new ChluIPFS({
+            directory: getTestDir('customer', date),
+            logger: logger('Customer', verbose)
+        })
+        customer.ipfs = await createIPFS({
+            repo: getTestDir('customer/ipfs', date)
+        })
         collector = new ChluIPFS({
             directory: getTestDir('collector', date),
             logger: logger('Collector', verbose)
@@ -75,18 +82,20 @@ describe('Integration: API Client with Query and Publish API Servers and Collect
         // Set up mocks to make validator work
         const crypto = cryptoTestUtils(collector);
         const makeKeyPair = crypto.makeKeyPair;
-        const makeDID = crypto.makeDID
+        makeDID = crypto.makeDID
         preparePoPR = crypto.preparePoPR;
         vm = await makeKeyPair();
         v = await makeDID();
         m = await makeDID();
         const http = fakeHttpModule(() => ({ didId: m.publicDidDocument.id }));
         collector.http = http;
+        customer.http = http;
         queryServer.chluIpfs.http = http;
         publishServer.chluIpfs.http = http;
         publishServer.chluIpfs.bitcoin.Blockcypher = btcUtils.BlockcypherMock;
         queryServer.chluIpfs.bitcoin.Blockcypher = btcUtils.BlockcypherMock;
         collector.bitcoin.Blockcypher = btcUtils.BlockcypherMock;
+        customer.bitcoin.Blockcypher = btcUtils.BlockcypherMock;
 
         // Start modules
         await collector.collector.start()
@@ -94,6 +103,8 @@ describe('Integration: API Client with Query and Publish API Servers and Collect
         await queryServer.start()
         await publishServer.start()
         await api.start()
+        await customer.start()
+        await customer.importDID(await api.exportDID(), false)
 
         // Do some DID prework to make sure nodes have everything they need
 
@@ -102,9 +113,14 @@ describe('Integration: API Client with Query and Publish API Servers and Collect
         await collector.didIpfsHelper.publish(m, false)
         // wait until API Client DID is replicated
         await queryServer.chluIpfs.getDID(api.didIpfsHelper.didId, true)
+        await customer.getDID(api.didIpfsHelper.didId, true)
         await publishServer.chluIpfs.getDID(api.didIpfsHelper.didId, true)
         // wait for Publish and Query to have DIDs for vendor and marketplace
         await queryServer.chluIpfs.getDID(v.publicDidDocument.id, true)
+        await queryServer.chluIpfs.getDID(m.publicDidDocument.id, true)
+        await customer.getDID(v.publicDidDocument.id, true)
+        await customer.getDID(m.publicDidDocument.id, true)
+        await publishServer.chluIpfs.getDID(v.publicDidDocument.id, true)
         await publishServer.chluIpfs.getDID(m.publicDidDocument.id, true)
         // IMPORTANT note for the future: do not parallelize these operations,
         // it introduces some kind of OrbitDB bug where the tests fail intermittently
@@ -112,8 +128,7 @@ describe('Integration: API Client with Query and Publish API Servers and Collect
 
     after(async () => {
         await collector.collector.stop()
-        await Promise.all([api.stop(), publishServer.stop(), queryServer.stop(), collector.stop()]);
-        await rendezvous.stop();
+        await Promise.all([api.stop(), customer.stop(), publishServer.stop(), queryServer.stop(), collector.stop()]);
         rimraf.sync(publishServer.chluIpfs.directory);
         rimraf.sync(collector.directory);
         rimraf.sync(queryServer.chluIpfs.directory);
@@ -123,17 +138,20 @@ describe('Integration: API Client with Query and Publish API Servers and Collect
     function setupBtcMock(multihash, rr) {
         // delete cached info, since we are about to change it
         collector.cache.cache.del(btcUtils.exampleTransaction.hash);
+        customer.cache.cache.del(btcUtils.exampleTransaction.hash);
         publishServer.chluIpfs.cache.cache.del(btcUtils.exampleTransaction.hash);
         queryServer.chluIpfs.cache.cache.del(btcUtils.exampleTransaction.hash);
         // tell mock btc module to return a TX that matches the RR
         collector.bitcoin.api.returnMatchingTXForRR(Object.assign({}, rr, { multihash }));
+        customer.bitcoin.api.returnMatchingTXForRR(Object.assign({}, rr, { multihash }));
         publishServer.chluIpfs.bitcoin.api.returnMatchingTXForRR(Object.assign({}, rr, { multihash }));
         queryServer.chluIpfs.bitcoin.api.returnMatchingTXForRR(Object.assign({}, rr, { multihash }));
     }
 
-    describe('API Client with Publish API Server', () => {
+    describe('API Client + Customer ChluIPFS with API Servers', () => {
 
-        it('client DID generated when starting is available', async () => {
+        it('client DID generated when starting is published', async () => {
+            expect(customer.didIpfsHelper.didId).to.equal(api.didIpfsHelper.didId)
             const didId = get(await api.exportDID(), 'publicDidDocument.id')
             // check that the publish server has it
             expect(get(await publishServer.chluIpfs.getDID(didId), 'id')).to.equal(didId)
@@ -143,20 +161,21 @@ describe('Integration: API Client with Query and Publish API Servers and Collect
             expect(get(await queryServer.chluIpfs.getDID(didId, true), 'id')).to.equal(didId)
         })
 
-        it('stores a verified review record', async () => {
+        it('ChluIPFS stores a verified review record, then API Client reads it', async () => {
             const reviewRecord = await getFakeReviewRecord()
             reviewRecord.popr = await preparePoPR(reviewRecord.popr, vm, v, m);
             // Store the RR
-            const multihash = await api.storeReviewRecord(reviewRecord, {
+            const multihash = await customer.storeReviewRecord(reviewRecord, {
                 publish: false
             })
             // set up btc mock to return the right content
             setupBtcMock(multihash, reviewRecord);
-            await api.storeReviewRecord(reviewRecord, {
+            const multihash2 = await customer.storeReviewRecord(reviewRecord, {
                 publish: true,
                 bitcoinTransactionHash: 'fake',
                 expectedMultihash: multihash
             })
+            expect(multihash).to.equal(multihash2)
             // Check that it's present in the list for all three
             expect(await publishServer.chluIpfs.getReviewList()).to.contain(multihash)
             expect(await queryServer.chluIpfs.getReviewList()).to.contain(multihash)
@@ -166,19 +185,83 @@ describe('Integration: API Client with Query and Publish API Servers and Collect
             // Read it
             const readRecord = await api.readReviewRecord(multihash)
             expect(readRecord.requestedMultihash).to.equal(multihash)
+            // Check that it was signed by the customer
+            expect(readRecord.customer_signature.creator).to.equal(api.didIpfsHelper.didId)
+            expect(readRecord.issuer_signature.creator).to.equal(api.didIpfsHelper.didId)
         })
 
-        it('publishes a DID')
-    })
+        it('API Client publishes a DID, then reads it', async () => {
+            const did = await makeDID()
+            collector.didIpfsHelper.publish(did)
+            const result = await api.getDID(did.publicDidDocument.id, true)
+            expect(result).to.deep.equal(did.publicDidDocument)
+        })
 
-    describe('API Client with Query API Server', () => {
-        it('reads a DID')
-        it('reads a review records')
-        it('reads review records by author')
-        it('reads review records by subject')
+        it('ChluIPFS publishes a review, then API Client reads review records by author', async () => {
+            const reviewRecord = await getFakeReviewRecord()
+            reviewRecord.popr = await preparePoPR(reviewRecord.popr, vm, v, m);
+            // Store the RR
+            const multihash = await customer.storeReviewRecord(reviewRecord, {
+                publish: false
+            })
+            // set up btc mock to return the right content
+            setupBtcMock(multihash, reviewRecord);
+            // Publish it using the Publish Server
+            await customer.storeReviewRecord(reviewRecord, {
+                publish: true,
+                bitcoinTransactionHash: 'fake',
+                expectedMultihash: multihash
+            })
+            // Read it from Query Server
+            const rr = await queryServer.chluIpfs.readReviewRecord(multihash)
+            // Make sure customer signature is correct
+            expect(rr.customer_signature.creator).to.equal(api.didIpfsHelper.didId)
+            // Check reviews by author
+            let reviewsByAuthor
+            do {
+                // It might not be correct right away, need to wait for orbit-db to replicate
+                reviewsByAuthor = await api.getReviewsWrittenByDID(api.didIpfsHelper.didId)
+                if (reviewsByAuthor.length < 1) await waitMs(1000)
+            } while(reviewsByAuthor.length < 1)
+            expect(reviewsByAuthor).to.contain(multihash)
+        })
+
+        it('ChluIPFS publishes a review, then API Client reads review records by subject', async () => {
+            const reviewRecord = await getFakeReviewRecord()
+            reviewRecord.popr = await preparePoPR(reviewRecord.popr, vm, v, m);
+            // Store the RR
+            const multihash = await customer.storeReviewRecord(reviewRecord, {
+                publish: false
+            })
+            // set up btc mock to return the right content
+            setupBtcMock(multihash, reviewRecord);
+            // Publish it using the Publish Server
+            await customer.storeReviewRecord(reviewRecord, {
+                publish: true,
+                bitcoinTransactionHash: 'fake',
+                expectedMultihash: multihash
+            })
+            // Read it from Query Server
+            const rr = await queryServer.chluIpfs.readReviewRecord(multihash)
+            // Make sure Subject DID is correct
+            expect(rr.popr.vendor_did).to.equal(v.publicDidDocument.id)
+            // Check reviews by author
+            let reviewsBySubject
+            do {
+                // It might not be correct right away, need to wait for orbit-db to replicate
+                reviewsBySubject = await api.getReviewsAboutDID(v.publicDidDocument.id)
+                if (reviewsBySubject.length < 1) await waitMs(1000)
+            } while(reviewsBySubject.length < 1)
+            expect(reviewsBySubject).to.contain(multihash)
+
+        })
     })
 
     describe('API Client and Marketplace', () => {
-        it('registers as Vendor')
+        it('API Client registers as Vendor')
     })
 })
+
+async function waitMs(x) {
+    return new Promise(resolve =>  setTimeout(resolve, x))
+}

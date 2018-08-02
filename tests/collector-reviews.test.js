@@ -15,6 +15,8 @@ const { cloneDeep } = require('lodash');
 const rimraf = require('rimraf');
 const sinon = require('sinon');
 
+require('./index.js')
+
 function withoutHashAndSig(obj) {
     return Object.assign({}, obj, {
         sig: null,
@@ -31,14 +33,12 @@ function strip(obj) {
 }
 
 describe('Integration: Chlu Collector and Review Records', function() {
-    let server, testDir, ipfsDir, customerNode, customerIpfs, serviceNode, serviceIpfs;
+    let testDir, ipfsDir, customerNode, customerIpfs, serviceNode, serviceIpfs;
     let v, vm, m, preparePoPR;
 
-    before(async () => {
-        if (env.isNode()) {
-            server = await require('chlu-collector/src/rendezvous').startRendezvousServer(ChluIPFS.rendezvousPorts.test);
-        }
+    const verbose = false // set this to true to get all components to log debug strings
 
+    before(async () => {
         ipfsDir = env.isNode() ? '/tmp/chlu-test-ipfs-' + Date.now() + Math.random() + '/' : Date.now() + Math.random();
         serviceIpfs = await utils.createIPFS({ repo: ipfsDir + '/' + 'service' });
         customerIpfs = await utils.createIPFS({ repo: ipfsDir + '/' + 'customer' });
@@ -52,14 +52,14 @@ describe('Integration: Chlu Collector and Review Records', function() {
         const customerDir = testDir + 'chlu-customer';
 
         serviceNode = new ChluIPFS({
-            logger: logger('Service'),
+            logger: logger('Collector', verbose),
             directory: serviceNodeDir,
             enablePersistence: false,
             bootstrap: false
         });
         serviceNode.collector = new ChluCollector(serviceNode)
         customerNode = new ChluIPFS({
-            logger: logger('Customer'),
+            logger: logger('Customer', verbose),
             directory: customerDir,
             enablePersistence: false,
             bootstrap: false
@@ -111,10 +111,7 @@ describe('Integration: Chlu Collector and Review Records', function() {
     after(async () => {
         await serviceNode.collector.stop()
         await Promise.all([serviceNode.stop(), customerNode.stop()]);
-        if (env.isNode()) {
-            await server.stop();
-            rimraf.sync(testDir);
-        }
+        rimraf.sync(testDir);
     });
 
     function setupBtcMock(multihash, rr) {
@@ -310,7 +307,7 @@ describe('Integration: Chlu Collector and Review Records', function() {
     })
 
     describe('Integration: Collector and DIDs', () => {
-        it('Collector handles DID publishing')
-        it('Collector handles DID updates')
+        it('collector handles DID publishing')
+        it('collector handles DID updates')
     })
 });
