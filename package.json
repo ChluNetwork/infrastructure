@@ -12,7 +12,7 @@
     "chlu-api-query": "ChluNetwork/chlu-api-query#implementation",
     "chlu-collector": "ChluNetwork/chlu-collector#implementation",
     "chlu-did-service": "ChluNetwork/chlu-did-service#upgrade-chlu2",
-    "chlu-marketplace-js": "ChluNetwork/chlu-marketplace-js#upgrade-chlu2",
+    "chlu-marketplace-js": "ChluNetwork/chlu-marketplace-js#upgrade-chlu",
     "libp2p-websocket-star-rendezvous": "^0.2.3",
     "node-env-file": "^0.1.8"
   },

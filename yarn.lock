@@ -1071,15 +1071,15 @@ chlu-ipfs-support@ChluNetwork/chlu-ipfs-support#misc-features:
     elliptic "^6.4.0"
     ipfs "~0.28.2"
     ipfs-api "^20.0.0"
+    libp2p-websocket-star-rendezvous "^0.2.3"
     lodash "^4.17.5"
     lru-cache "^4.1.2"
-    moment "^2.22.2"
     orbit-db "~0.19.8"
     protons "~1.0.1"
 
-chlu-marketplace-js@ChluNetwork/chlu-marketplace-js#upgrade-chlu2:
+chlu-marketplace-js@ChluNetwork/chlu-marketplace-js#upgrade-chlu:
   version "0.1.0"
-  resolved "https://codeload.github.com/ChluNetwork/chlu-marketplace-js/tar.gz/73145c8e7f91da01de00347a1d79503712dedd81"
+  resolved "https://codeload.github.com/ChluNetwork/chlu-marketplace-js/tar.gz/1aa80d349de483ea2eba36cf101ed2b3aa9843f3"
   dependencies:
     axios "^0.18.0"
     chlu-ipfs-support ChluNetwork/chlu-ipfs-support#misc-features
@@ -4077,7 +4077,7 @@ level-js@^2.2.4:
     typedarray-to-buffer "~1.0.0"
     xtend "~2.1.2"
 
-"level-js@github:timkuijsten/level.js#idbunwrapper":
+level-js@timkuijsten/level.js#idbunwrapper:
   version "2.2.3"
   resolved "https://codeload.github.com/timkuijsten/level.js/tar.gz/18e03adab34c49523be7d3d58fafb0c632f61303"
   dependencies:
@@ -5011,7 +5011,7 @@ multihashing-async@~0.5.1:
     murmurhash3js "^3.0.1"
     nodeify "^1.0.1"
 
-"multiplex@github:dignifiedquire/multiplex":
+multiplex@dignifiedquire/multiplex:
   version "6.7.0"
   resolved "https://codeload.github.com/dignifiedquire/multiplex/tar.gz/b5d5edd30454e2c978ee8c52df86f5f4840d2eab"
   dependencies:

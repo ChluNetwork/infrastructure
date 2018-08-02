@@ -87,10 +87,10 @@ describe('Integration: API Client + ChluIPFS with Query+Publish API Servers and 
 
         const marketplace = await startMarketplace(marketplacePort, {
             marketplaceLocation: `http://localhost:${marketplacePort}`,
+            logger: logger('Chlu Marketplace', verbose),
             chluIpfs: {
                 network: 'experimental',
-                directory: getTestDir('marketplace', date),
-                logger: logger('Chlu Marketplace', verbose)
+                directory: getTestDir('marketplace', date)
             },
             db: {
                 password: 'test',
