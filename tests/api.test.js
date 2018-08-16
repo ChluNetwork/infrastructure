@@ -23,6 +23,7 @@ function getTestDir(name, date) {
 }
 
 const marketplacePort = 3101
+const marketplaceLocation = `http://localhost:${marketplacePort}`
 
 describe('Integration: API Client + ChluIPFS with Query+Publish API Servers and Collector', () => {
 
@@ -118,7 +119,7 @@ describe('Integration: API Client + ChluIPFS with Query+Publish API Servers and 
         collector.collector = new ChluCollector(collector)
 
         const marketplace = await startMarketplace(marketplacePort, {
-            marketplaceLocation: `http://localhost:${marketplacePort}`,
+            marketplaceLocation,
             logger: logger('Chlu Marketplace', verbose),
             chluIpfs: {
                 network: 'experimental',
@@ -360,7 +361,14 @@ describe('Integration: API Client + ChluIPFS with Query+Publish API Servers and 
             expect(vendorData.vSignature).to.be.a('string')
         })
 
-        it('API Client updates own Vendor profile on marketplace')
+        it('API Client updates own Vendor profile on marketplace', async () => {
+            const profile = {
+                name: 'Developer'
+            }
+            await vendor.updateVendorProfile(marketplaceLocation, profile)
+            const vendorData = await mkt.getVendor(vendor.didIpfsHelper.didId)
+            expect(vendorData.profile).to.deep.equal(profile)
+        })
     })
 })
 
