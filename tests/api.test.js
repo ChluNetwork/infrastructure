@@ -1,4 +1,5 @@
 const ChluIPFS = require('chlu-ipfs-support')
+const ChluSQLIndex = require('chlu-ipfs-support/src/modules/orbitdb/indexes/sql')
 const ChluAPIClient = require('chlu-api-client')
 const ChluAPIQuery = require('chlu-api-query')
 const ChluAPIPublish = require('chlu-api-publish')
@@ -12,7 +13,7 @@ const path = require('path')
 const os = require('os')
 const rimraf = require('rimraf')
 const expect = require('chai').expect
-const { get } = require('lodash')
+const { get, cloneDeep } = require('lodash')
 const sinon = require('sinon')
 
 require('./index.js')
@@ -25,21 +26,40 @@ const marketplacePort = 3101
 
 describe('Integration: API Client + ChluIPFS with Query+Publish API Servers and Collector', () => {
 
-    let api, customer, vendor, publishServer, queryServer, collector, makeDID, mkt
+    let api, customer, vendor, publishServer, queryServer, collector, mkt
 
     const verbose = false // set this to true to get all components to log debug strings
+    const enableLogs = false // set this to true to turn on test-specific logs
+
+    const log = x => { if (enableLogs) console.log('[TEST]', x) }
 
     before(async () => {
         const date = Date.now()
         // Use custom port so it does not conflict
         const queryPort = 3105
         const publishPort = 3106
+        // Prepare PostgreSQL config
+        const OrbitDBIndex = ChluSQLIndex
+        const dbName = process.env.CHLU_POSTGRESQL_DB
+        const dbUser = process.env.CHLU_POSTGRESQL_USER
+        const dbPassword = process.env.CHLU_POSTGRESQL_PASSWORD
+        const OrbitDBIndexOptions = {
+            enableValidations: false,
+            enableWrites: false,
+            dialect: 'postgres',
+            database: dbName,
+            username: dbUser,
+            password: dbPassword,
+        }
+        // Prepare Services
         queryServer = new ChluAPIQuery({
             port: queryPort,
             logger: logger('Query', verbose),
             chluIpfsConfig: {
                 directory: getTestDir('query-server', date),
-                logger: logger('Query', verbose)
+                logger: logger('Query', verbose),
+                OrbitDBIndex,
+                OrbitDBIndexOptions
             }
         })
         queryServer.chluIpfs.ipfs = await createIPFS({
@@ -50,7 +70,9 @@ describe('Integration: API Client + ChluIPFS with Query+Publish API Servers and 
             logger: logger('Publish', verbose),
             chluIpfsConfig: {
                 directory: getTestDir('publish-server', date),
-                logger: logger('Query', verbose)
+                logger: logger('Query', verbose),
+                OrbitDBIndex,
+                OrbitDBIndexOptions
             }
         })
         publishServer.chluIpfs.ipfs = await createIPFS({
@@ -59,26 +81,32 @@ describe('Integration: API Client + ChluIPFS with Query+Publish API Servers and 
         api = new ChluAPIClient({
             publishApiUrl: `http://localhost:${publishPort}`,
             queryApiUrl: `http://localhost:${queryPort}`,
-            directory: getTestDir('api-client', date),
+            directory: getTestDir('customer-api-client', date),
             logger: logger('Client', verbose),
         })
         customer = new ChluIPFS({
             directory: getTestDir('customer', date),
-            logger: logger('Customer', verbose)
+            logger: logger('Customer', verbose),
+            // TODO: can't use Noop index: we require full index for publishing
         })
         customer.ipfs = await createIPFS({
             repo: getTestDir('customer/ipfs', date)
         })
-        vendor = new ChluIPFS({
-            directory: getTestDir('vendor', date),
+        vendor = new ChluAPIClient({
+            publishApiUrl: `http://localhost:${publishPort}`,
+            queryApiUrl: `http://localhost:${queryPort}`,
+            directory: getTestDir('vendor-api-client', date),
             logger: logger('Vendor', verbose)
-        })
-        vendor.ipfs = await createIPFS({
-            repo: getTestDir('vendor/ipfs', date)
         })
         collector = new ChluIPFS({
             directory: getTestDir('collector', date),
-            logger: logger('Collector', verbose)
+            logger: logger('Collector', verbose),
+            OrbitDBIndex,
+            OrbitDBIndexOptions: Object.assign(cloneDeep(OrbitDBIndexOptions), {
+                enableWrites: true,
+                enableValidations: true,
+                clearOnStart: true
+            })
         })
         collector.ipfs = await createIPFS({
             repo: getTestDir('collector/ipfs', date)
@@ -90,7 +118,9 @@ describe('Integration: API Client + ChluIPFS with Query+Publish API Servers and 
             logger: logger('Chlu Marketplace', verbose),
             chluIpfs: {
                 network: 'experimental',
-                directory: getTestDir('marketplace', date)
+                directory: getTestDir('marketplace', date),
+                OrbitDBIndex,
+                OrbitDBIndexOptions
             },
             db: {
                 password: 'test',
@@ -117,27 +147,53 @@ describe('Integration: API Client + ChluIPFS with Query+Publish API Servers and 
         await queryServer.start()
         await publishServer.start()
         await api.start()
+        customer.didIpfsHelper.didToImport = await api.exportDID()
         await customer.start()
-        await customer.importDID(await api.exportDID(), false)
         await vendor.start()
 
-        await vendor.vendor.registerToMarketplace(`http://localhost:${marketplacePort}`)
+        // Log DIDs
+        log('Collector DID', get(await collector.exportDID(), 'publicDidDocument.id'))
+        log('Query Server DID', get(await queryServer.chluIpfs.exportDID(), 'publicDidDocument.id'))
+        log('Publish Server DID', get(await publishServer.chluIpfs.exportDID(), 'publicDidDocument.id'))
+        log('Marketplace DID', get(await mkt.chluIpfs.exportDID(), 'publicDidDocument.id'))
+        log('API Client DID', get(await api.exportDID(), 'publicDidDocument.id'))
+        log('Customer DID', get(await customer.exportDID(), 'publicDidDocument.id'))
+        log('Vendor DID', get(await vendor.exportDID(), 'publicDidDocument.id'))
+
         const v = await vendor.exportDID()
         const m = await mkt.chluIpfs.exportDID()
+
+        await collector.getDID(m.publicDidDocument.id, true)
+        log(m.publicDidDocument.id, 'Collector OK')
+        await collector.getDID(v.publicDidDocument.id, true)
+        log(v.publicDidDocument.id, 'Collector OK')
+        await mkt.chluIpfs.getDID(v.publicDidDocument.id, true)
+        log(v.publicDidDocument.id, 'Marketplace OK')
+
+        await vendor.registerToMarketplace(`http://localhost:${marketplacePort}`)
 
         // Do some DID prework to make sure nodes have everything they need
 
         // wait until API Client DID is replicated
         await queryServer.chluIpfs.getDID(api.didIpfsHelper.didId, true)
+        log(api.didIpfsHelper.didId, 'Query OK')
         await customer.getDID(api.didIpfsHelper.didId, true)
+        log(api.didIpfsHelper.didId, 'Customer OK')
         await publishServer.chluIpfs.getDID(api.didIpfsHelper.didId, true)
+        log(api.didIpfsHelper.didId, 'Publish OK')
         // wait for Publish and Query to have DIDs for vendor and marketplace
         await queryServer.chluIpfs.getDID(v.publicDidDocument.id, true)
+        log(v.publicDidDocument.id, 'Query OK')
         await queryServer.chluIpfs.getDID(m.publicDidDocument.id, true)
+        log(m.publicDidDocument.id, 'Query OK')
         await customer.getDID(v.publicDidDocument.id, true)
+        log(v.publicDidDocument.id, 'Customer OK')
         await customer.getDID(m.publicDidDocument.id, true)
+        log(m.publicDidDocument.id, 'Customer OK')
         await publishServer.chluIpfs.getDID(v.publicDidDocument.id, true)
+        log(v.publicDidDocument.id, 'Publish OK')
         await publishServer.chluIpfs.getDID(m.publicDidDocument.id, true)
+        log(m.publicDidDocument.id, 'Publish OK')
         // IMPORTANT note for the future: do not parallelize these operations,
         // it introduces some kind of OrbitDB bug where the tests fail intermittently
     })
@@ -213,9 +269,9 @@ describe('Integration: API Client + ChluIPFS with Query+Publish API Servers and 
             })
             expect(multihash).to.equal(multihash2)
             // Check that it's present in the list for all three
-            expect(await publishServer.chluIpfs.getReviewList()).to.contain(multihash)
-            expect(await queryServer.chluIpfs.getReviewList()).to.contain(multihash)
-            expect(await collector.getReviewList()).to.contain(multihash)
+            expect((await publishServer.chluIpfs.getReviewList()).map(x => x.multihash)).to.contain(multihash)
+            expect((await queryServer.chluIpfs.getReviewList()).map(x => x.multihash)).to.contain(multihash)
+            expect((await collector.getReviewList()).map(x => x.multihash)).to.contain(multihash)
             // Check that the collector pinned it
             expect(collector.pin.calledWith(multihash)).to.be.true
             // Read it
@@ -259,7 +315,7 @@ describe('Integration: API Client + ChluIPFS with Query+Publish API Servers and 
                 reviewsByAuthor = await api.getReviewsWrittenByDID(api.didIpfsHelper.didId)
                 if (reviewsByAuthor.length < 1) await waitMs(1000)
             } while(reviewsByAuthor.length < 1)
-            expect(reviewsByAuthor).to.contain(multihash)
+            expect(reviewsByAuthor.map(x => x.multihash)).to.contain(multihash)
         })
 
         it('ChluIPFS publishes a review, then API Client reads review records by subject', async () => {
@@ -288,7 +344,7 @@ describe('Integration: API Client + ChluIPFS with Query+Publish API Servers and 
                 reviewsBySubject = await api.getReviewsAboutDID(vendor.didIpfsHelper.didId)
                 if (reviewsBySubject.length < 1) await waitMs(1000)
             } while(reviewsBySubject.length < 1)
-            expect(reviewsBySubject).to.contain(multihash)
+            expect(reviewsBySubject.map(x => x.multihash)).to.contain(multihash)
 
         })
     })
@@ -299,6 +355,8 @@ describe('Integration: API Client + ChluIPFS with Query+Publish API Servers and 
             expect(vendorData.vDidId).to.equal(vendor.didIpfsHelper.didId)
             expect(vendorData.vSignature).to.be.a('string')
         })
+
+        it('API Client updates own profile on marketplace')
     })
 })
 

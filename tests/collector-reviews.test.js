@@ -4,6 +4,7 @@ const ChluIPFS = require('chlu-ipfs-support');
 const ChluCollector = require('chlu-collector')
 // Test utilities
 const { getFakeReviewRecord, makeUnverified } = require('chlu-ipfs-support/tests/utils/protobuf');
+const ChluSQLIndex = require('chlu-ipfs-support/src/modules/orbitdb/indexes/sql')
 const utils = require('chlu-ipfs-support/tests/utils/ipfs');
 const env = require('chlu-ipfs-support/src/utils/env');
 const logger = require('chlu-ipfs-support/tests/utils/logger');
@@ -51,18 +52,29 @@ describe('Integration: Chlu Collector and Review Records', function() {
         const serviceNodeDir = testDir + 'chlu-service-node';
         const customerDir = testDir + 'chlu-customer';
 
+        // Prepare PostgreSQL config
+        const OrbitDBIndex = ChluSQLIndex
+        const dbName = process.env.CHLU_POSTGRESQL_DB
+        const dbUser = process.env.CHLU_POSTGRESQL_USER
+        const dbPassword = process.env.CHLU_POSTGRESQL_PASSWORD
+        const OrbitDBIndexOptions = {
+            dialect: 'postgres',
+            database: dbName,
+            username: dbUser,
+            password: dbPassword,
+            clearOnStart: true
+        }
+
         serviceNode = new ChluIPFS({
             logger: logger('Collector', verbose),
             directory: serviceNodeDir,
-            enablePersistence: false,
-            bootstrap: false
+            OrbitDBIndex,
+            OrbitDBIndexOptions
         });
         serviceNode.collector = new ChluCollector(serviceNode)
         customerNode = new ChluIPFS({
             logger: logger('Customer', verbose),
-            directory: customerDir,
-            enablePersistence: false,
-            bootstrap: false
+            directory: customerDir
         });
         // Make sure they don't connect to production
         expect(customerNode.network).to.equal(ChluIPFS.networks.experimental);
@@ -140,7 +152,7 @@ describe('Integration: Chlu Collector and Review Records', function() {
         expect(readRecord.editable).to.be.false;
         expect(strip(readRecord)).to.deep.equal(strip(customerRecord));
         // check orbit-db did indexing
-        expect(await serviceNode.orbitDb.getReviewsAboutDID(readRecord.subject.did))
+        expect((await serviceNode.orbitDb.getReviewsAboutDID(readRecord.subject.did)).map(x => x.multihash))
             .to.contain(hash)
     })
 
@@ -169,9 +181,9 @@ describe('Integration: Chlu Collector and Review Records', function() {
         expect(readRecord.editable).to.be.false;
         expect(strip(readRecord)).to.deep.equal(strip(customerRecord));
         // check orbit-db by did indexing
-        expect(await serviceNode.getReviewsWrittenByDID(readRecord.customer_signature.creator))
+        expect((await serviceNode.getReviewsWrittenByDID(readRecord.customer_signature.creator)).map(x => x.multihash))
             .to.contain(hash)
-        expect(await serviceNode.getReviewsAboutDID(readRecord.popr.vendor_did))
+        expect((await serviceNode.getReviewsAboutDID(readRecord.popr.vendor_did)).map(x => x.multihash))
             .to.contain(hash)
     });
 
@@ -195,7 +207,7 @@ describe('Integration: Chlu Collector and Review Records', function() {
                 bitcoinTransactionHash: btcUtils.exampleTransaction.hash
             });
             // Check that the review list is updated
-            expect((await customerNode.getReviewList())).to.contain(multihash);
+            expect((await customerNode.getReviewList()).map(x => x.multihash)).to.contain(multihash);
             // Store the update
             reviewUpdate.previous_version_multihash = multihash
             const updatedMultihash = await customerNode.storeReviewRecord(reviewUpdate);
