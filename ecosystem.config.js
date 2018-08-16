@@ -11,6 +11,7 @@ env(path.join(__dirname, '.env'))
 
 const blockcypherToken = process.env.BLOCKCYPHER_TOKEN
 const network = process.env.CHLU_NETWORK || 'experimental'
+const marketplaceLocation = process.env.CHLU_MARKETPLACE_LOCATION || 'http://localhost:5000'
 const dbName = process.env.CHLU_POSTGRESQL_DB
 const dbUser = process.env.CHLU_POSTGRESQL_USER
 const dbPassword = process.env.CHLU_POSTGRESQL_PASSWORD
@@ -59,7 +60,7 @@ module.exports = {
             name: 'chlu-marketplace',
             script: projectPath('chlu-marketplace-js/src/bin/index.js'),
             watch: false,
-            args: `start --port 5000 --marketplace-location "http://localhost:5000" --network ${network} ${databaseConfMarketplace}`,
+            args: `start --port 5000 --marketplace-location "${marketplaceLocation}" --network ${network} ${databaseConfMarketplace}`,
             max_memory_restart: '250M'
         },
         /* Disabled until we update it
