@@ -7,7 +7,11 @@ let server
 
 before(async () => {
     process.env.DISABLE_LOGS = '1'
-    env(path.join(__dirname, '..', '.env'))
+    try {
+        env(path.join(__dirname, '..', '.env'))
+    } catch (error) {
+        console.log('[WARNING] Could not load .env file')
+    }
     server = await startRendezvousServer(ChluIPFS.rendezvousPorts.test);
 })
 
