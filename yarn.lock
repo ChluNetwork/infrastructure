@@ -27,8 +27,8 @@
   resolved "https://registry.yarnpkg.com/@types/geojson/-/geojson-1.0.6.tgz#3e02972728c69248c2af08d60a48cbb8680fffdf"
 
 "@types/node@*":
-  version "10.5.6"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.5.6.tgz#1640f021dd0eaf12e731e54198c12ad2e020dc8e"
+  version "10.5.7"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.5.7.tgz#960d9feb3ade2233bcc9843c918d740b4f78a7cf"
 
 "File@>= 0.10.0", File@^0.10.2:
   version "0.10.2"
@@ -349,8 +349,8 @@ aws-sign2@~0.7.0:
   resolved "https://registry.yarnpkg.com/aws-sign2/-/aws-sign2-0.7.0.tgz#b46e890934a9591f2d2f6f86d7e6a9f1b3fe76a8"
 
 aws4@^1.2.1, aws4@^1.6.0:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.7.0.tgz#d4d0e9b9dbfca77bf08eeb0a8a471550fe39e289"
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.8.0.tgz#f0e003d9ca9e7f59c7a508945d7b2ef9a04a542f"
 
 axios@^0.18.0:
   version "0.18.0"
@@ -871,6 +871,10 @@ buffer-split@^1.0.0:
   dependencies:
     buffer-indexof "~0.0.0"
 
+buffer-writer@1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/buffer-writer/-/buffer-writer-1.0.1.tgz#22a936901e3029afcd7547eb4487ceb697a3bf08"
+
 buffer-xor@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/buffer-xor/-/buffer-xor-1.0.3.tgz#26e61ed1422fb70dd42e6e36729ed51d855fe8d9"
@@ -1018,41 +1022,41 @@ check-error@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/check-error/-/check-error-1.0.2.tgz#574d312edd88bb5dd8912e9286dd6c0aed4aac82"
 
-chlu-api-client@ChluNetwork/chlu-api-client-js#~0.1.0:
-  version "0.1.0"
-  resolved "https://codeload.github.com/ChluNetwork/chlu-api-client-js/tar.gz/55a8fda6faec0b97ae5fc450a8fe890876d3cae6"
+chlu-api-client@ChluNetwork/chlu-api-client-js#~0.2.0:
+  version "0.2.0"
+  resolved "https://codeload.github.com/ChluNetwork/chlu-api-client-js/tar.gz/54b38f7b9913a32422bfb0e1521e252e4e578742"
   dependencies:
     axios "^0.18.0"
-    chlu-ipfs-support "ChluNetwork/chlu-ipfs-support#semver:~0.1.0"
+    chlu-ipfs-support "ChluNetwork/chlu-ipfs-support#semver:~0.2.0"
     lodash "^4.17.10"
 
-"chlu-api-publish@ChluNetwork/chlu-api-publish#semver:~0.1.0":
-  version "0.1.0"
-  resolved "https://codeload.github.com/ChluNetwork/chlu-api-publish/tar.gz/853bc48ed186018809ab5c5fe4c9722d40c5af13"
+"chlu-api-publish@ChluNetwork/chlu-api-publish#semver:~0.2.0":
+  version "0.2.0"
+  resolved "https://codeload.github.com/ChluNetwork/chlu-api-publish/tar.gz/cde0b45ab1e56d3e22418417129cfd771f432946"
   dependencies:
     body-parser "^1.18.3"
-    chlu-ipfs-support "ChluNetwork/chlu-ipfs-support#semver:~0.1.0"
+    chlu-ipfs-support "ChluNetwork/chlu-ipfs-support#semver:~0.2.0"
     commander "^2.16.0"
     cors "^2.8.4"
     express "^4.16.3"
     lodash "^4.17.10"
 
-"chlu-api-query@ChluNetwork/chlu-api-query#semver:~0.1.0":
-  version "0.1.0"
-  resolved "https://codeload.github.com/ChluNetwork/chlu-api-query/tar.gz/35fbe681c5c4dfdc10cc3cc14dedcc5b0a61a09b"
+"chlu-api-query@ChluNetwork/chlu-api-query#semver:~0.2.0":
+  version "0.2.0"
+  resolved "https://codeload.github.com/ChluNetwork/chlu-api-query/tar.gz/f17639c6adc728cc68cf44e48fadb69d77e6861c"
   dependencies:
     body-parser "^1.18.3"
-    chlu-ipfs-support "ChluNetwork/chlu-ipfs-support#semver:~0.1.0"
+    chlu-ipfs-support "ChluNetwork/chlu-ipfs-support#semver:~0.2.0"
     commander "^2.16.0"
     cors "^2.8.4"
     express "^4.16.3"
     lodash "^4.17.10"
 
-"chlu-collector@ChluNetwork/chlu-collector#semver:~0.1.0":
-  version "0.1.0"
-  resolved "https://codeload.github.com/ChluNetwork/chlu-collector/tar.gz/3265965a4787354f00827da6ca006c876c111756"
+"chlu-collector@ChluNetwork/chlu-collector#semver:~0.2.0":
+  version "0.2.0"
+  resolved "https://codeload.github.com/ChluNetwork/chlu-collector/tar.gz/e84efdac507ecac3c66beeaadf0fed0e19d78a96"
   dependencies:
-    chlu-ipfs-support "ChluNetwork/chlu-ipfs-support#semver:~0.1.0"
+    chlu-ipfs-support "ChluNetwork/chlu-ipfs-support#semver:~0.2.0"
     commander "^2.15.1"
     libp2p-websocket-star-rendezvous "~0.2.3"
     lodash "^4.17.5"
@@ -1076,7 +1080,7 @@ chlu-api-client@ChluNetwork/chlu-api-client-js#~0.1.0:
 
 "chlu-ipfs-support@ChluNetwork/chlu-ipfs-support#semver:~0.1.0":
   version "0.1.1"
-  resolved "https://codeload.github.com/ChluNetwork/chlu-ipfs-support/tar.gz/e08d7e427b4339b4e9f8ac9322f92028c467a94a"
+  resolved "https://codeload.github.com/ChluNetwork/chlu-ipfs-support/tar.gz/694e93faa196b658f27eed14f09db26f7bc15ce8"
   dependencies:
     axios "^0.18.0"
     blockcypher ChluNetwork/node-client
@@ -1094,15 +1098,39 @@ chlu-api-client@ChluNetwork/chlu-api-client-js#~0.1.0:
     orbit-db "~0.19.9"
     protons "~1.0.1"
 
-"chlu-marketplace-js@ChluNetwork/chlu-marketplace-js#semver:~0.1.0":
-  version "0.1.0"
-  resolved "https://codeload.github.com/ChluNetwork/chlu-marketplace-js/tar.gz/64ea806f208d3297e4fb2b1bd9e99e56f286157b"
+"chlu-ipfs-support@ChluNetwork/chlu-ipfs-support#semver:~0.2.0":
+  version "0.2.0"
+  resolved "https://codeload.github.com/ChluNetwork/chlu-ipfs-support/tar.gz/85b430f63f73c1aad0c71df7b66191739a8003cb"
   dependencies:
     axios "^0.18.0"
-    chlu-ipfs-support "ChluNetwork/chlu-ipfs-support#semver:~0.1.0"
+    blockcypher ChluNetwork/node-client
+    brorand "^1.1.0"
+    chlu-did "ChluNetwork/chlu-did#semver:~0.1.0"
+    chlu-wallet-support-js "ChluNetwork/chlu-wallet-support-js#semver:~0.1.1"
+    commander "^2.15.1"
+    debounce-async "^0.0.1"
+    elliptic "^6.4.0"
+    ipfs "~0.31.0"
+    ipfs-api "^22.3.0"
+    lodash "^4.17.5"
+    lru-cache "^4.1.2"
+    moment "^2.22.2"
+    orbit-db "~0.19.9"
+    pg "^7.4.3"
+    protons "~1.0.1"
+    sequelize "^4.38.0"
+    sqlite3 "^4.0.2"
+
+"chlu-marketplace-js@ChluNetwork/chlu-marketplace-js#semver:~0.2.0":
+  version "0.2.0"
+  resolved "https://codeload.github.com/ChluNetwork/chlu-marketplace-js/tar.gz/f7eaa45656db125c1c511250a3864b1cae5af757"
+  dependencies:
+    axios "^0.18.0"
+    chlu-ipfs-support "ChluNetwork/chlu-ipfs-support#semver:~0.2.0"
     commander "^2.15.0"
     cors "^2.8.4"
     express "^4.16.2"
+    lodash "^4.17.10"
     mkdirp "^0.5.1"
     moment "^2.22.2"
     morgan "^1.9.0"
@@ -1253,8 +1281,8 @@ commander@2.15.1:
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.15.1.tgz#df46e867d0fc2aec66a34662b406a9ccafff5b0f"
 
 commander@^2.11.0, commander@^2.15.0, commander@^2.15.1, commander@^2.16.0:
-  version "2.17.0"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-2.17.0.tgz#9d07b25e2a6f198b76d8b756a0e8a9604a6a1a60"
+  version "2.17.1"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-2.17.1.tgz#bd77ab7de6de94205ceacc72f1716d29f20a77bf"
 
 compare-versions@^3.1.0:
   version "3.3.0"
@@ -1691,7 +1719,7 @@ ee-first@1.1.1:
 
 elliptic@=3.0.3:
   version "3.0.3"
-  resolved "http://registry.npmjs.org/elliptic/-/elliptic-3.0.3.tgz#865c9b420bfbe55006b9f969f97a0d2c44966595"
+  resolved "https://registry.yarnpkg.com/elliptic/-/elliptic-3.0.3.tgz#865c9b420bfbe55006b9f969f97a0d2c44966595"
   dependencies:
     bn.js "^2.0.0"
     brorand "^1.0.1"
@@ -1699,8 +1727,8 @@ elliptic@=3.0.3:
     inherits "^2.0.1"
 
 elliptic@^6.2.3, elliptic@^6.4.0:
-  version "6.4.0"
-  resolved "https://registry.yarnpkg.com/elliptic/-/elliptic-6.4.0.tgz#cac9af8762c85836187003c8dfe193e5e2eae5df"
+  version "6.4.1"
+  resolved "https://registry.yarnpkg.com/elliptic/-/elliptic-6.4.1.tgz#c2d0b7776911b86722c632c3c06c60f2f819939a"
   dependencies:
     bn.js "^4.4.0"
     brorand "^1.0.1"
@@ -3037,9 +3065,9 @@ ipfs-log@~4.1.0:
     p-map "^1.1.1"
     p-whilst "^1.0.0"
 
-ipfs-mfs@~0.2.3:
-  version "0.2.5"
-  resolved "https://registry.yarnpkg.com/ipfs-mfs/-/ipfs-mfs-0.2.5.tgz#d093c6d2dd5060b2ac29febe0dbae98bc2460ec8"
+ipfs-mfs@~0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/ipfs-mfs/-/ipfs-mfs-0.3.0.tgz#2da1d98832b3140d40d9e79dd89c29bb925b7edd"
   dependencies:
     async "^2.6.1"
     blob "~0.0.4"
@@ -3049,7 +3077,7 @@ ipfs-mfs@~0.2.3:
     filereader-stream "^2.0.0"
     interface-datastore "~0.4.2"
     ipfs-unixfs "~0.1.15"
-    ipfs-unixfs-engine "~0.31.3"
+    ipfs-unixfs-engine "~0.32.1"
     is-pull-stream "~0.0.0"
     is-stream "^1.1.0"
     joi "^13.4.0"
@@ -3058,6 +3086,7 @@ ipfs-mfs@~0.2.3:
     once "^1.4.0"
     promisify-es6 "^1.0.3"
     pull-cat "^1.1.11"
+    pull-defer "~0.2.2"
     pull-paramap "^1.2.2"
     pull-pushable "^2.2.0"
     pull-stream "^3.6.8"
@@ -3105,20 +3134,18 @@ ipfs-repo@~0.22.1:
     multiaddr "^4.0.0"
     pull-stream "^3.6.7"
 
-ipfs-unixfs-engine@~0.31.3:
-  version "0.31.3"
-  resolved "https://registry.yarnpkg.com/ipfs-unixfs-engine/-/ipfs-unixfs-engine-0.31.3.tgz#79e220395c3f30476cacfa481220623110b20429"
+ipfs-unixfs-engine@~0.32.1:
+  version "0.32.1"
+  resolved "https://registry.yarnpkg.com/ipfs-unixfs-engine/-/ipfs-unixfs-engine-0.32.1.tgz#21a5f01147a6db116ea580681e095df5ddf4063e"
   dependencies:
     async "^2.6.1"
-    bs58 "^4.0.1"
     cids "~0.5.3"
     deep-extend "~0.6.0"
     ipfs-unixfs "~0.1.15"
-    ipld "~0.17.2"
-    ipld-dag-pb "~0.14.5"
+    ipld "~0.17.3"
+    ipld-dag-pb "~0.14.6"
     left-pad "^1.3.0"
     lodash "^4.17.10"
-    multihashes "~0.4.13"
     multihashing-async "~0.5.1"
     pull-batch "^1.0.0"
     pull-block "^1.4.0"
@@ -3131,7 +3158,9 @@ ipfs-unixfs-engine@~0.31.3:
     pull-through "^1.0.18"
     pull-traverse "^1.0.3"
     pull-write "^1.1.4"
+    rabin "^1.6.0"
     sparse-array "^1.3.1"
+    stream-to-pull-stream "^1.7.2"
 
 ipfs-unixfs@^0.1.14, ipfs-unixfs@~0.1.15:
   version "0.1.15"
@@ -3140,8 +3169,8 @@ ipfs-unixfs@^0.1.14, ipfs-unixfs@~0.1.15:
     protons "^1.0.0"
 
 ipfs@~0.31.0:
-  version "0.31.2"
-  resolved "https://registry.yarnpkg.com/ipfs/-/ipfs-0.31.2.tgz#d297122d23a379ebee0a65d0df7b9540ccb6445a"
+  version "0.31.4"
+  resolved "https://registry.yarnpkg.com/ipfs/-/ipfs-0.31.4.tgz#3b55c6b051b500e491cddfac9e9509b82a80beaa"
   dependencies:
     "@nodeutils/defaults-deep" "^1.1.0"
     async "^2.6.1"
@@ -3169,11 +3198,11 @@ ipfs@~0.31.0:
     ipfs-block "~0.7.1"
     ipfs-block-service "~0.14.0"
     ipfs-http-response "~0.1.2"
-    ipfs-mfs "~0.2.3"
+    ipfs-mfs "~0.3.0"
     ipfs-multipart "~0.1.0"
     ipfs-repo "~0.22.1"
     ipfs-unixfs "~0.1.15"
-    ipfs-unixfs-engine "~0.31.3"
+    ipfs-unixfs-engine "~0.32.1"
     ipld "~0.17.3"
     ipld-dag-cbor "~0.12.1"
     ipld-dag-pb "~0.14.6"
@@ -3319,7 +3348,7 @@ ipld-zcash@~0.1.4:
     multihashing-async "~0.5.1"
     zcash-bitcore-lib "~0.13.20-rc3"
 
-ipld@~0.17.2, ipld@~0.17.3:
+ipld@~0.17.3:
   version "0.17.3"
   resolved "https://registry.yarnpkg.com/ipld/-/ipld-0.17.3.tgz#ede5440a5b8469b1f0280502e21a5d83011d8630"
   dependencies:
@@ -5150,9 +5179,16 @@ multicodec@~0.2.5, multicodec@~0.2.6, multicodec@~0.2.7:
   dependencies:
     varint "^5.0.0"
 
-multihashes@0.4.13, multihashes@^0.4.12, multihashes@^0.4.13, multihashes@~0.4.12, multihashes@~0.4.13, multihashes@~0.4.9:
+multihashes@0.4.13:
   version "0.4.13"
   resolved "https://registry.yarnpkg.com/multihashes/-/multihashes-0.4.13.tgz#d10bd71bd51d24aa894e2a6f1457146bb7bac125"
+  dependencies:
+    bs58 "^4.0.1"
+    varint "^5.0.0"
+
+multihashes@^0.4.12, multihashes@^0.4.13, multihashes@~0.4.12, multihashes@~0.4.13, multihashes@~0.4.9:
+  version "0.4.14"
+  resolved "https://registry.yarnpkg.com/multihashes/-/multihashes-0.4.14.tgz#774db9a161f81a8a27dc60788f91248e020f5244"
   dependencies:
     bs58 "^4.0.1"
     varint "^5.0.0"
@@ -5203,7 +5239,7 @@ mute-stream@0.0.7:
   version "0.0.7"
   resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.7.tgz#3075ce93bc21b8fab43e1bc4da7e8115ed1e7bab"
 
-nan@^2.10.0, nan@^2.2.1, nan@^2.9.2, nan@~2.10.0:
+nan@^2.1.0, nan@^2.10.0, nan@^2.2.1, nan@^2.9.2, nan@~2.10.0:
   version "2.10.0"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.10.0.tgz#96d0cd610ebd58d4b4de9cc0c6828cda99c7548f"
 
@@ -5212,8 +5248,8 @@ nan@~2.7.0:
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.7.0.tgz#d95bf721ec877e08db276ed3fc6eb78f9083ad46"
 
 nanoid@^1.0.7:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-1.1.0.tgz#b18e806e1cdbfdbe030374d5cf08a48cbc80b474"
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-1.1.1.tgz#6159cc3c985acb7ebd70fb231b0b01f2947ed7a3"
 
 nanomatch@^1.2.9:
   version "1.2.13"
@@ -5274,8 +5310,8 @@ nise@^1.4.2:
     text-encoding "^0.6.4"
 
 nock@^9.0.18:
-  version "9.4.4"
-  resolved "https://registry.yarnpkg.com/nock/-/nock-9.4.4.tgz#d58a6d54ca26735d792aa776801cd0623789bdb6"
+  version "9.6.0"
+  resolved "https://registry.yarnpkg.com/nock/-/nock-9.6.0.tgz#df273defe35fd31c3ec9039c570e64339d31d68b"
   dependencies:
     chai "^4.1.2"
     debug "^3.1.0"
@@ -5320,7 +5356,7 @@ node-notifier@^5.0.2:
     shellwords "^0.1.1"
     which "^1.3.0"
 
-node-pre-gyp@^0.10.0:
+node-pre-gyp@^0.10.0, node-pre-gyp@^0.10.3:
   version "0.10.3"
   resolved "https://registry.yarnpkg.com/node-pre-gyp/-/node-pre-gyp-0.10.3.tgz#3070040716afdc778747b61b6887bf78880b80fc"
   dependencies:
@@ -5715,6 +5751,10 @@ package-json@^4.0.0:
     registry-url "^3.0.3"
     semver "^5.1.0"
 
+packet-reader@0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/packet-reader/-/packet-reader-0.3.1.tgz#cd62e60af8d7fea8a705ec4ff990871c46871f27"
+
 parse-glob@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/parse-glob/-/parse-glob-3.0.4.tgz#b2c376cfb11f35513badd173ef0bb6e3a388391c"
@@ -5898,6 +5938,41 @@ pez@2.x.x:
     hoek "4.x.x"
     nigel "2.x.x"
 
+pg-connection-string@0.1.3:
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/pg-connection-string/-/pg-connection-string-0.1.3.tgz#da1847b20940e42ee1492beaf65d49d91b245df7"
+
+pg-pool@~2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/pg-pool/-/pg-pool-2.0.3.tgz#c022032c8949f312a4f91fb6409ce04076be3257"
+
+pg-types@~1.12.1:
+  version "1.12.1"
+  resolved "https://registry.yarnpkg.com/pg-types/-/pg-types-1.12.1.tgz#d64087e3903b58ffaad279e7595c52208a14c3d2"
+  dependencies:
+    postgres-array "~1.0.0"
+    postgres-bytea "~1.0.0"
+    postgres-date "~1.0.0"
+    postgres-interval "^1.1.0"
+
+pg@^7.4.3:
+  version "7.4.3"
+  resolved "https://registry.yarnpkg.com/pg/-/pg-7.4.3.tgz#f7b6f93f5340ecc2596afbb94a13e3d6b609834b"
+  dependencies:
+    buffer-writer "1.0.1"
+    packet-reader "0.3.1"
+    pg-connection-string "0.1.3"
+    pg-pool "~2.0.3"
+    pg-types "~1.12.1"
+    pgpass "1.x"
+    semver "4.3.2"
+
+pgpass@1.x:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/pgpass/-/pgpass-1.0.2.tgz#2a7bb41b6065b67907e91da1b07c1847c877b306"
+  dependencies:
+    split "^1.0.0"
+
 pify@^2.0.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/pify/-/pify-2.3.0.tgz#ed141a6ac043a849ea588498e7dca8b15330e90c"
@@ -5931,6 +6006,44 @@ podium@^1.3.0:
 posix-character-classes@^0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/posix-character-classes/-/posix-character-classes-0.1.1.tgz#01eac0fe3b5af71a2a6c02feabb8c1fef7e00eab"
+
+postgres-array@~1.0.0:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/postgres-array/-/postgres-array-1.0.2.tgz#8e0b32eb03bf77a5c0a7851e0441c169a256a238"
+
+postgres-bytea@~1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/postgres-bytea/-/postgres-bytea-1.0.0.tgz#027b533c0aa890e26d172d47cf9ccecc521acd35"
+
+postgres-date@~1.0.0:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/postgres-date/-/postgres-date-1.0.3.tgz#e2d89702efdb258ff9d9cee0fe91bd06975257a8"
+
+postgres-interval@^1.1.0:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/postgres-interval/-/postgres-interval-1.1.2.tgz#bf71ff902635f21cb241a013fc421d81d1db15a9"
+  dependencies:
+    xtend "^4.0.0"
+
+prebuild-install@^2.1.0:
+  version "2.5.3"
+  resolved "https://registry.yarnpkg.com/prebuild-install/-/prebuild-install-2.5.3.tgz#9f65f242782d370296353710e9bc843490c19f69"
+  dependencies:
+    detect-libc "^1.0.3"
+    expand-template "^1.0.2"
+    github-from-package "0.0.0"
+    minimist "^1.2.0"
+    mkdirp "^0.5.1"
+    node-abi "^2.2.0"
+    noop-logger "^0.1.1"
+    npmlog "^4.0.1"
+    os-homedir "^1.0.1"
+    pump "^2.0.1"
+    rc "^1.1.6"
+    simple-get "^2.7.0"
+    tar-fs "^1.13.0"
+    tunnel-agent "^0.6.0"
+    which-pm-runs "^1.0.0"
 
 prebuild-install@^4.0.0:
   version "4.0.0"
@@ -6251,9 +6364,21 @@ qs@~6.4.0:
   version "6.4.0"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.4.0.tgz#13e26d28ad6b0ffaa91312cd3bf708ed351e7233"
 
+rabin@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/rabin/-/rabin-1.6.0.tgz#e05690b13056f08c80098e3ad71b90530038e355"
+  dependencies:
+    bindings "^1.2.1"
+    bl "^1.0.0"
+    debug "^2.2.0"
+    minimist "^1.2.0"
+    nan "^2.1.0"
+    prebuild-install "^2.1.0"
+    readable-stream "^2.0.4"
+
 randomatic@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/randomatic/-/randomatic-3.0.0.tgz#d35490030eb4f7578de292ce6dfb04a91a128923"
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/randomatic/-/randomatic-3.1.0.tgz#36f2ca708e9e567f5ed2ec01949026d50aa10116"
   dependencies:
     is-number "^4.0.0"
     kind-of "^6.0.0"
@@ -6350,7 +6475,7 @@ readable-stream@1.1.x, readable-stream@^1.0.33:
     isarray "0.0.1"
     string_decoder "~0.10.x"
 
-readable-stream@2.3.6, readable-stream@^2.0.0, readable-stream@^2.0.5, readable-stream@^2.0.6, readable-stream@^2.1.4, readable-stream@^2.1.5, readable-stream@^2.2.2, readable-stream@^2.3.0, readable-stream@^2.3.4, readable-stream@^2.3.5, readable-stream@^2.3.6, readable-stream@~2.3.5:
+readable-stream@2.3.6, readable-stream@^2.0.0, readable-stream@^2.0.4, readable-stream@^2.0.5, readable-stream@^2.0.6, readable-stream@^2.1.4, readable-stream@^2.1.5, readable-stream@^2.2.2, readable-stream@^2.3.0, readable-stream@^2.3.4, readable-stream@^2.3.5, readable-stream@^2.3.6, readable-stream@~2.3.5:
   version "2.3.6"
   resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-2.3.6.tgz#b11c27d88b8ff1fbe070643cf94b0c79ae1b0aaf"
   dependencies:
@@ -6458,7 +6583,7 @@ request@2.81.0:
     tunnel-agent "^0.6.0"
     uuid "^3.0.0"
 
-request@^2.79.0:
+request@^2.79.0, request@^2.87.0:
   version "2.87.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.87.0.tgz#32f00235cd08d482b4d0d68db93a829c0ed5756e"
   dependencies:
@@ -6664,6 +6789,10 @@ semver-diff@^2.0.0:
   version "5.5.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.5.0.tgz#dc4bbc7a6ca9d916dee5d43516f0092b58f7b8ab"
 
+semver@4.3.2:
+  version "4.3.2"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-4.3.2.tgz#c7a07158a80bedd052355b770d82d6640f803be7"
+
 semver@~5.4.1:
   version "5.4.1"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.4.1.tgz#e059c09d8571f0540823733433505d3a2f00b18e"
@@ -6686,7 +6815,7 @@ send@0.16.2:
     range-parser "~1.2.0"
     statuses "~1.4.0"
 
-sequelize@^4.35.1:
+sequelize@^4.35.1, sequelize@^4.38.0:
   version "4.38.0"
   resolved "https://registry.yarnpkg.com/sequelize/-/sequelize-4.38.0.tgz#330c1aa445d4e46b80a97d895603c01666cdc357"
   dependencies:
@@ -7008,6 +7137,12 @@ split2@^2.1.0:
   dependencies:
     through2 "^2.0.2"
 
+split@^1.0.0:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/split/-/split-1.0.1.tgz#605bd9be303aa59fb35f9229fbea0ddec9ea07d9"
+  dependencies:
+    through "2"
+
 split@~0.3.0:
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/split/-/split-0.3.3.tgz#cd0eea5e63a211dfff7eb0f091c4133e2d0dd28f"
@@ -7028,6 +7163,14 @@ sqlite3@^3.1.13:
   dependencies:
     nan "~2.7.0"
     node-pre-gyp "~0.6.38"
+
+sqlite3@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/sqlite3/-/sqlite3-4.0.2.tgz#1bbeb68b03ead5d499e42a3a1b140064791c5a64"
+  dependencies:
+    nan "~2.10.0"
+    node-pre-gyp "^0.10.3"
+    request "^2.87.0"
 
 sshpk@^1.7.0:
   version "1.14.2"

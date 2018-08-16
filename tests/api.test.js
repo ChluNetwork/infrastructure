@@ -356,7 +356,7 @@ describe('Integration: API Client + ChluIPFS with Query+Publish API Servers and 
             expect(vendorData.vSignature).to.be.a('string')
         })
 
-        it('API Client updates own profile on marketplace')
+        it('API Client updates own Vendor profile on marketplace')
     })
 })
 
