@@ -11,6 +11,12 @@ env(path.join(__dirname, '.env'))
 
 const blockcypherToken = process.env.BLOCKCYPHER_TOKEN
 const network = process.env.CHLU_NETWORK || 'experimental'
+const dbName = process.env.CHLU_POSTGRESQL_DB
+const dbUser = process.env.CHLU_POSTGRESQL_USER
+const dbPassword = process.env.CHLU_POSTGRESQL_PASSWORD
+const databaseConfCollector = `--postgres --database-db ${dbName} --database-user ${dbUser} ${dbPassword ? `--database-password ${dbPassword}` : ''}`
+const databaseConfAPIServers = `--postgres --no-write --database-db ${dbName} --database-user ${dbUser} ${dbPassword ? `--database-password ${dbPassword}` : ''}`
+const databaseConfMarketplace = `--chlu-postgres --chlu-no-write --chlu-database-name ${dbName} --chlu-database-user ${dbUser} ${dbPassword ? `--database-password ${dbPassword}` : ''}`
 
 module.exports = {
     /**
@@ -30,7 +36,7 @@ module.exports = {
             name: 'chlu-collector',
             script: projectPath('chlu-collector/src/bin.js'),
             watch: false,
-            args: `start --network ${network} ` + (blockcypherToken ? ` --btc ${blockcypherToken}` : ''),
+            args: `start --network ${network} ` + (blockcypherToken ? ` --btc ${blockcypherToken} ${databaseConfCollector}` : ''),
             max_memory_restart: '250M'
         },
         // Mid-level services (API Gateways)
@@ -38,14 +44,14 @@ module.exports = {
             name: 'chlu-api-query',
             script: projectPath('chlu-api-query/src/bin.js'),
             watch: false,
-            args: `start --network ${network} ` + (blockcypherToken ? ` --btc ${blockcypherToken}` : ''),
+            args: `start --network ${network} ` + (blockcypherToken ? ` --btc ${blockcypherToken} ${databaseConfAPIServers}` : ''),
             max_memory_restart: '250M'
         },
         {
             name: 'chlu-api-publish',
             script: projectPath('chlu-api-publish/src/bin.js'),
             watch: false,
-            args: `start --network ${network} ` + (blockcypherToken ? ` --btc ${blockcypherToken}` : ''),
+            args: `start --network ${network} ` + (blockcypherToken ? ` --btc ${blockcypherToken} ${databaseConfAPIServers}` : ''),
             max_memory_restart: '250M'
         },
         // High-level services built on Chlu libraries
@@ -53,9 +59,10 @@ module.exports = {
             name: 'chlu-marketplace',
             script: projectPath('chlu-marketplace-js/src/bin/index.js'),
             watch: false,
-            args: 'serve -c marketplace-config.json',
+            args: `start --port 5000 --marketplace-location "http://localhost:5000" --network ${network} ${databaseConfMarketplace}`,
             max_memory_restart: '250M'
         },
+        /* Disabled until we update it
         {
             name: 'chlu-did-service',
             script: projectPath('chlu-did-service/index.js'),
@@ -63,5 +70,6 @@ module.exports = {
             args: `start --network ${network}`,
             max_memory_restart: '250M'
         }
+        */
     ],
 };

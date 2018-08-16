@@ -11,3 +11,23 @@ before_install:
 
 cache:
   yarn: true
+
+services:
+  - postgresql
+
+before_script:
+  - psql -c "ALTER USER travis WITH PASSWORD 'travis';"
+
+addons:
+  postgresql: '10'
+  apt:
+    packages:
+    - postgresql-10
+    - postgresql-client-10
+
+env:
+  global:
+    - CHLU_POSTGRESQL_USER=travis
+    - CHLU_POSTGRESQL_DB=travis
+    - CHLU_POSTGRESQL_PASSWORD=travis
+    - PGPORT=5433
