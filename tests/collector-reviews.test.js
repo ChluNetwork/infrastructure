@@ -268,7 +268,8 @@ describe('Integration: Chlu Collector and Review Records', function() {
             });
             setupBtcMock(multihash, reviewRecord);
             await customerNode.storeReviewRecord(reviewRecord, {
-                bitcoinTransactionHash: btcUtils.exampleTransaction.hash
+                bitcoinTransactionHash: btcUtils.exampleTransaction.hash,
+                expectedMultihash: multihash
             });
             // Store the update
             reviewUpdate.previous_version_multihash = multihash
