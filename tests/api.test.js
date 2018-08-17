@@ -42,8 +42,8 @@ describe('Integration: API Client + ChluIPFS with Query+Publish API Servers and 
         // Prepare PostgreSQL config
         const OrbitDBIndex = ChluSQLIndex
         const dbName = process.env.CHLU_POSTGRESQL_DB
-        const dbHost = process.env.CHLU_DATABASE_HOST || 'localhost'
-        const dbPort = process.env.CHLU_DATABASE_PORT || 5432
+        const dbHost = process.env.CHLU_POSTGRESQL_HOST || 'localhost'
+        const dbPort = process.env.CHLU_POSTGRESQL_PORT || 5432
         const dbUser = process.env.CHLU_POSTGRESQL_USER
         const dbPassword = process.env.CHLU_POSTGRESQL_PASSWORD
         const OrbitDBIndexOptions = {
