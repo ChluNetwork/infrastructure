@@ -1105,25 +1105,22 @@ chlu-api-client@ChluNetwork/chlu-api-client-js#~0.2.0:
     axios "^0.18.0"
     blockcypher ChluNetwork/node-client
     brorand "^1.1.0"
-    chlu-did "ChluNetwork/chlu-did#semver:~0.1.0"
-    chlu-wallet-support-js "ChluNetwork/chlu-wallet-support-js#semver:~0.1.1"
+    chlu-did ChluNetwork/chlu-did
+    chlu-wallet-support-js ChluNetwork/chlu-wallet-support-js
     commander "^2.15.1"
     debounce-async "^0.0.1"
     elliptic "^6.4.0"
-    ipfs "~0.31.0"
-    ipfs-api "^22.3.0"
+    ipfs "~0.28.2"
+    ipfs-api "^20.0.0"
+    libp2p-websocket-star-rendezvous "^0.2.3"
     lodash "^4.17.5"
     lru-cache "^4.1.2"
-    moment "^2.22.2"
-    orbit-db "~0.19.9"
-    pg "^7.4.3"
+    orbit-db "~0.19.8"
     protons "~1.0.1"
-    sequelize "^4.38.0"
-    sqlite3 "^4.0.2"
 
-"chlu-marketplace-js@ChluNetwork/chlu-marketplace-js#semver:~0.2.0":
-  version "0.2.0"
-  resolved "https://codeload.github.com/ChluNetwork/chlu-marketplace-js/tar.gz/f7eaa45656db125c1c511250a3864b1cae5af757"
+"chlu-marketplace-js@ChluNetwork/chlu-marketplace-js#semver:~0.2.1":
+  version "0.2.1"
+  resolved "https://codeload.github.com/ChluNetwork/chlu-marketplace-js/tar.gz/2e0894fb4700e35bb1cd79863c95b2ba08d96fe2"
   dependencies:
     axios "^0.18.0"
     chlu-ipfs-support "ChluNetwork/chlu-ipfs-support#semver:~0.2.0"

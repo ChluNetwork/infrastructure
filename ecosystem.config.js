@@ -19,8 +19,7 @@ const dbUser = process.env.CHLU_POSTGRESQL_USER
 const dbPassword = process.env.CHLU_POSTGRESQL_PASSWORD
 const databaseConfCollector = `--postgres --database-host ${dbHost} --database-port ${dbPort} --database-db ${dbName} --database-user ${dbUser} ${dbPassword ? `--database-password ${dbPassword}` : ''}`
 const databaseConfAPIServers = `--no-write ${databaseConfCollector}`
-// TODO: Marketplace should support --chlu-database-port
-const databaseConfMarketplace = `--chlu-postgres --chlu-no-write --chlu-database-host ${dbHost} --chlu-database-name ${dbName} --chlu-database-user ${dbUser} ${dbPassword ? `--database-password ${dbPassword}` : ''}`
+const databaseConfMarketplace = `--chlu-postgres --chlu-no-write --chlu-database-host ${dbHost} --chlu-database-port ${dbPort} --chlu-database-name ${dbName} --chlu-database-user ${dbUser} ${dbPassword ? `--database-password ${dbPassword}` : ''}`
 
 module.exports = {
     /**
