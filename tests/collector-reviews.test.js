@@ -108,14 +108,14 @@ describe('Integration: Chlu Collector and Review Records', function() {
 
         // Do some DID prework to make sure nodes have everything they need
 
-        // Publish Vendor and Marketplace DIDs from service node
-        await serviceNode.didIpfsHelper.publish(v, false)
-        await serviceNode.didIpfsHelper.publish(m, false)
+        // Publish Vendor and Marketplace DIDs from customer, then check that the collector replicates
+        await customerNode.didIpfsHelper.publish(v, true)
+        await customerNode.didIpfsHelper.publish(m, true)
         // wait until Customer DID is replicated into Service Node's OrbitDB
         await serviceNode.getDID(customerNode.didIpfsHelper.didId, true)
-        // wait for customer node to have DIDs for vendor and marketplace
-        await customerNode.getDID(v.publicDidDocument.id, true)
-        await customerNode.getDID(m.publicDidDocument.id, true)
+        // wait for other node to have DIDs for vendor and marketplace
+        await serviceNode.getDID(v.publicDidDocument.id, true)
+        await serviceNode.getDID(m.publicDidDocument.id, true)
         // IMPORTANT note for the future: do not parallelize these operations,
         // it introduces some kind of OrbitDB bug where the tests fail intermittently
     });
@@ -274,7 +274,7 @@ describe('Integration: Chlu Collector and Review Records', function() {
             // Store the update
             reviewUpdate.previous_version_multihash = multihash
             const updatedMultihash = await customerNode.storeReviewRecord(reviewUpdate);
-            const rr = await customerNode.readReviewRecord(multihash, { getLatestVersion: true });
+            const rr = await customerNode.readReviewRecord(multihash);
             const rrUpdate = await customerNode.readReviewRecord(updatedMultihash);
             expect(strip(rrUpdate)).to.deep.equal(strip(rr));
         });
