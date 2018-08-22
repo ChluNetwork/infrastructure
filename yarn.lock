@@ -337,8 +337,8 @@ asynckit@^0.4.0:
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
 
 atob@^2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.1.tgz#ae2d5a729477f289d60dd7f96a6314a22dd6c22a"
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
 
 aws-sign2@~0.6.0:
   version "0.6.0"
@@ -1052,11 +1052,11 @@ chlu-api-client@ChluNetwork/chlu-api-client-js#~0.2.0:
     express "^4.16.3"
     lodash "^4.17.10"
 
-"chlu-collector@ChluNetwork/chlu-collector#semver:~0.2.0":
-  version "0.2.0"
-  resolved "https://codeload.github.com/ChluNetwork/chlu-collector/tar.gz/e84efdac507ecac3c66beeaadf0fed0e19d78a96"
+"chlu-collector@ChluNetwork/chlu-collector#semver:~0.2.1":
+  version "0.2.1"
+  resolved "https://codeload.github.com/ChluNetwork/chlu-collector/tar.gz/189f877e7cd959d4637dfb9e82bd38e24edc0c49"
   dependencies:
-    chlu-ipfs-support "ChluNetwork/chlu-ipfs-support#semver:~0.2.0"
+    chlu-ipfs-support "ChluNetwork/chlu-ipfs-support#semver:~0.2.2"
     commander "^2.15.1"
     libp2p-websocket-star-rendezvous "~0.2.3"
     lodash "^4.17.5"
@@ -1098,9 +1098,9 @@ chlu-api-client@ChluNetwork/chlu-api-client-js#~0.2.0:
     orbit-db "~0.19.9"
     protons "~1.0.1"
 
-"chlu-ipfs-support@ChluNetwork/chlu-ipfs-support#semver:~0.2.0", chlu-ipfs-support@ChluNetwork/chlu-ipfs-support#~0.2.0:
-  version "0.2.0"
-  resolved "https://codeload.github.com/ChluNetwork/chlu-ipfs-support/tar.gz/85b430f63f73c1aad0c71df7b66191739a8003cb"
+"chlu-ipfs-support@ChluNetwork/chlu-ipfs-support#semver:~0.2.0":
+  version "0.2.1"
+  resolved "https://codeload.github.com/ChluNetwork/chlu-ipfs-support/tar.gz/813fa9d7cc50733ef00ffc7f5e6c2a2de0363415"
   dependencies:
     axios "^0.18.0"
     blockcypher ChluNetwork/node-client
@@ -1110,7 +1110,7 @@ chlu-api-client@ChluNetwork/chlu-api-client-js#~0.2.0:
     commander "^2.15.1"
     debounce-async "^0.0.1"
     elliptic "^6.4.0"
-    ipfs "~0.31.0"
+    ipfs "~0.31.7"
     ipfs-api "^22.3.0"
     lodash "^4.17.5"
     lru-cache "^4.1.2"
@@ -1121,9 +1121,32 @@ chlu-api-client@ChluNetwork/chlu-api-client-js#~0.2.0:
     sequelize "^4.38.0"
     sqlite3 "^4.0.2"
 
-"chlu-marketplace-js@ChluNetwork/chlu-marketplace-js#semver:~0.2.1":
-  version "0.2.1"
-  resolved "https://codeload.github.com/ChluNetwork/chlu-marketplace-js/tar.gz/2e0894fb4700e35bb1cd79863c95b2ba08d96fe2"
+"chlu-ipfs-support@ChluNetwork/chlu-ipfs-support#semver:~0.2.2", chlu-ipfs-support@ChluNetwork/chlu-ipfs-support#~0.2.2:
+  version "0.2.2"
+  resolved "https://codeload.github.com/ChluNetwork/chlu-ipfs-support/tar.gz/6655264a6d06a9695434ad57d75a528879ea60be"
+  dependencies:
+    axios "^0.18.0"
+    blockcypher ChluNetwork/node-client
+    brorand "^1.1.0"
+    chlu-did "ChluNetwork/chlu-did#semver:~0.1.0"
+    chlu-wallet-support-js "ChluNetwork/chlu-wallet-support-js#semver:~0.1.1"
+    commander "^2.15.1"
+    debounce-async "^0.0.1"
+    elliptic "^6.4.0"
+    ipfs "~0.31.7"
+    ipfs-api "^22.3.0"
+    lodash "^4.17.5"
+    lru-cache "^4.1.2"
+    moment "^2.22.2"
+    orbit-db "~0.19.9"
+    pg "^7.4.3"
+    protons "~1.0.1"
+    sequelize "^4.38.0"
+    sqlite3 "^4.0.2"
+
+"chlu-marketplace-js@ChluNetwork/chlu-marketplace-js#semver:~0.2.3":
+  version "0.2.3"
+  resolved "https://codeload.github.com/ChluNetwork/chlu-marketplace-js/tar.gz/6d2927d6092e99f520ec4070281ff04bdaa23105"
   dependencies:
     axios "^0.18.0"
     chlu-ipfs-support "ChluNetwork/chlu-ipfs-support#semver:~0.2.0"
@@ -1161,8 +1184,8 @@ chunky@0.0.0:
   resolved "https://registry.yarnpkg.com/chunky/-/chunky-0.0.0.tgz#1e7580a23c083897d2ad662459e7efd8465f608a"
 
 ci-info@^1.3.0:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/ci-info/-/ci-info-1.3.1.tgz#da21bc65a5f0d0d250c19a169065532b42fa048c"
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/ci-info/-/ci-info-1.4.0.tgz#4841d53cad49f11b827b648ebde27a6e189b412f"
 
 cids@0.5.3, cids@^0.5.2, cids@^0.5.3, cids@~0.5.1, cids@~0.5.2, cids@~0.5.3:
   version "0.5.3"
@@ -1285,8 +1308,8 @@ commander@^2.11.0, commander@^2.15.0, commander@^2.15.1, commander@^2.16.0:
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.17.1.tgz#bd77ab7de6de94205ceacc72f1716d29f20a77bf"
 
 compare-versions@^3.1.0:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/compare-versions/-/compare-versions-3.3.0.tgz#af93ea705a96943f622ab309578b9b90586f39c3"
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/compare-versions/-/compare-versions-3.3.1.tgz#1ede3172b713c15f7c7beb98cb74d2d82576dad3"
 
 component-bind@1.0.0:
   version "1.0.0"
@@ -1809,6 +1832,10 @@ epimetheus@^1.0.55:
   dependencies:
     prom-client "^10.0.0"
 
+err-code@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/err-code/-/err-code-1.1.2.tgz#06e0116d3028f6aef4806849eb0ea6a748ae6960"
+
 errno@~0.1.1, errno@~0.1.7:
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/errno/-/errno-0.1.7.tgz#4684d71779ad39af177e3f007996f7c67c852618"
@@ -2260,8 +2287,8 @@ finalhandler@1.1.1:
     unpipe "~1.0.0"
 
 find-process@^1.0.5:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/find-process/-/find-process-1.1.2.tgz#1fb3521e36eae1b4df189cb44100f8d8296e7382"
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/find-process/-/find-process-1.1.3.tgz#c05ade57d29dd80ca4023a7db50684cfb3d75b11"
   dependencies:
     chalk "^2.0.1"
     commander "^2.11.0"
@@ -2304,8 +2331,8 @@ fnv1a@^1.0.1:
   resolved "https://registry.yarnpkg.com/fnv1a/-/fnv1a-1.0.1.tgz#915e2d6d023c43d5224ad9f6d2a3c4156f5712f5"
 
 follow-redirects@^1.3.0:
-  version "1.5.5"
-  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.5.5.tgz#3c143ca599a2e22e62876687d68b23d55bad788b"
+  version "1.5.6"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.5.6.tgz#44eb4fe1981dff25e2bd86b7d4033abcdb81e965"
   dependencies:
     debug "^3.1.0"
 
@@ -2964,9 +2991,50 @@ ipaddr.js@1.8.0:
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/ipaddr.js/-/ipaddr.js-1.8.0.tgz#eaa33d6ddd7ace8f7f6fe0c9ca0440e706738b1e"
 
-ipfs-api@^22.2.4, ipfs-api@^22.3.0:
+ipfs-api@^22.3.0:
   version "22.3.0"
   resolved "https://registry.yarnpkg.com/ipfs-api/-/ipfs-api-22.3.0.tgz#29935c5d9ca533cefef62288e00a8b7eab412ab7"
+  dependencies:
+    async "^2.6.1"
+    big.js "^5.1.2"
+    bs58 "^4.0.1"
+    cids "~0.5.3"
+    concat-stream "^1.6.2"
+    debug "^3.1.0"
+    detect-node "^2.0.3"
+    flatmap "0.0.3"
+    glob "^7.1.2"
+    ipfs-block "~0.7.1"
+    ipfs-unixfs "~0.1.15"
+    ipld-dag-cbor "~0.12.1"
+    ipld-dag-pb "~0.14.6"
+    is-ipfs "~0.4.2"
+    is-pull-stream "0.0.0"
+    is-stream "^1.1.0"
+    libp2p-crypto "~0.13.0"
+    lru-cache "^4.1.3"
+    multiaddr "^5.0.0"
+    multibase "~0.4.0"
+    multihashes "~0.4.13"
+    ndjson "^1.5.0"
+    once "^1.4.0"
+    peer-id "~0.11.0"
+    peer-info "~0.14.1"
+    promisify-es6 "^1.0.3"
+    pull-defer "~0.2.2"
+    pull-pushable "^2.2.0"
+    pull-stream-to-stream "^1.3.4"
+    pump "^3.0.0"
+    qs "^6.5.2"
+    readable-stream "^2.3.6"
+    stream-http "^2.8.3"
+    stream-to-pull-stream "^1.7.2"
+    streamifier "~0.1.1"
+    tar-stream "^1.6.1"
+
+ipfs-api@^24.0.0:
+  version "24.0.1"
+  resolved "https://registry.yarnpkg.com/ipfs-api/-/ipfs-api-24.0.1.tgz#887a870cdf55550b93028181cd808adba20aa49b"
   dependencies:
     async "^2.6.1"
     big.js "^5.1.2"
@@ -3074,8 +3142,8 @@ ipfs-log@~4.1.0:
     p-whilst "^1.0.0"
 
 ipfs-mfs@~0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/ipfs-mfs/-/ipfs-mfs-0.3.0.tgz#2da1d98832b3140d40d9e79dd89c29bb925b7edd"
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/ipfs-mfs/-/ipfs-mfs-0.3.1.tgz#a3e37c1ae6420bcc46cde8cb364cc6424a5456e4"
   dependencies:
     async "^2.6.1"
     blob "~0.0.4"
@@ -3142,9 +3210,31 @@ ipfs-repo@~0.22.1:
     multiaddr "^4.0.0"
     pull-stream "^3.6.7"
 
+ipfs-repo@~0.23.1:
+  version "0.23.1"
+  resolved "https://registry.yarnpkg.com/ipfs-repo/-/ipfs-repo-0.23.1.tgz#9781d77d11174943240faa14f780e05eb925d774"
+  dependencies:
+    async "^2.6.0"
+    base32.js "~0.1.0"
+    big.js "^5.0.3"
+    cids "~0.5.3"
+    datastore-core "~0.4.0"
+    datastore-fs "~0.5.0"
+    datastore-level "~0.8.0"
+    debug "^3.1.0"
+    interface-datastore "~0.4.2"
+    ipfs-block "~0.7.1"
+    lock-me "^1.0.4"
+    lodash.get "^4.4.2"
+    lodash.has "^4.5.2"
+    lodash.set "^4.3.2"
+    multiaddr "^4.0.0"
+    pull-stream "^3.6.7"
+    sort-keys "^2.0.0"
+
 ipfs-unixfs-engine@~0.32.1:
-  version "0.32.2"
-  resolved "https://registry.yarnpkg.com/ipfs-unixfs-engine/-/ipfs-unixfs-engine-0.32.2.tgz#eb4e60487237fe8a8099a252b9c45a0524e6065d"
+  version "0.32.3"
+  resolved "https://registry.yarnpkg.com/ipfs-unixfs-engine/-/ipfs-unixfs-engine-0.32.3.tgz#b3fd3eedcbd5a30c53bf0fd3d60917c1feef2a9b"
   dependencies:
     async "^2.6.1"
     cids "~0.5.3"
@@ -3177,9 +3267,9 @@ ipfs-unixfs@^0.1.14, ipfs-unixfs@~0.1.15:
   dependencies:
     protons "^1.0.0"
 
-ipfs@~0.31.0:
-  version "0.31.4"
-  resolved "https://registry.yarnpkg.com/ipfs/-/ipfs-0.31.4.tgz#3b55c6b051b500e491cddfac9e9509b82a80beaa"
+ipfs@~0.31.0, ipfs@~0.31.7:
+  version "0.31.7"
+  resolved "https://registry.yarnpkg.com/ipfs/-/ipfs-0.31.7.tgz#4383c263421da9e6020257e44aae3759f3fdc7f0"
   dependencies:
     "@nodeutils/defaults-deep" "^1.1.0"
     async "^2.6.1"
@@ -3191,6 +3281,7 @@ ipfs@~0.31.0:
     byteman "^1.3.5"
     cids "~0.5.3"
     debug "^3.1.0"
+    err-code "^1.1.2"
     file-type "^8.1.0"
     filesize "^3.6.1"
     fnv1a "^1.0.1"
@@ -3202,14 +3293,14 @@ ipfs@~0.31.0:
     hoek "^5.0.3"
     human-to-milliseconds "^1.0.0"
     interface-datastore "~0.4.2"
-    ipfs-api "^22.2.4"
+    ipfs-api "^24.0.0"
     ipfs-bitswap "~0.20.3"
     ipfs-block "~0.7.1"
     ipfs-block-service "~0.14.0"
     ipfs-http-response "~0.1.2"
     ipfs-mfs "~0.3.0"
     ipfs-multipart "~0.1.0"
-    ipfs-repo "~0.22.1"
+    ipfs-repo "~0.23.1"
     ipfs-unixfs "~0.1.15"
     ipfs-unixfs-engine "~0.32.1"
     ipld "~0.17.3"
@@ -3572,6 +3663,10 @@ is-path-inside@^1.0.0:
   resolved "https://registry.yarnpkg.com/is-path-inside/-/is-path-inside-1.0.1.tgz#8ef5b7de50437a3fdca6b4e865ef7aa55cb48036"
   dependencies:
     path-is-inside "^1.0.1"
+
+is-plain-obj@^1.0.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/is-plain-obj/-/is-plain-obj-1.1.0.tgz#71a50c8429dfca773c92a390a4a03b39fcd51d3e"
 
 is-plain-object@^2.0.1, is-plain-object@^2.0.3, is-plain-object@^2.0.4:
   version "2.0.4"
@@ -4984,7 +5079,11 @@ micromatch@^3.1.4, micromatch@^3.1.8:
     snapdragon "^0.8.1"
     to-regex "^3.0.2"
 
-mime-db@1.x.x, mime-db@~1.35.0:
+mime-db@1.x.x:
+  version "1.36.0"
+  resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.36.0.tgz#5020478db3c7fe93aad7bbcc4dcf869c43363397"
+
+mime-db@~1.35.0:
   version "1.35.0"
   resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.35.0.tgz#0569d657466491283709663ad379a99b90d9ab47"
 
@@ -6556,8 +6655,8 @@ remove-trailing-separator@^1.0.1:
   resolved "https://registry.yarnpkg.com/remove-trailing-separator/-/remove-trailing-separator-1.1.0.tgz#c24bce2a283adad5bc3f58e0d48249b92379d8ef"
 
 repeat-element@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/repeat-element/-/repeat-element-1.1.2.tgz#ef089a178d1483baae4d93eb98b4f9e4e11d990a"
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/repeat-element/-/repeat-element-1.1.3.tgz#782e0d825c0c5a3bb39731f84efee6b742e6b1ce"
 
 repeat-string@^1.5.2, repeat-string@^1.6.1:
   version "1.6.1"
@@ -6776,8 +6875,8 @@ sax@^1.2.1, sax@^1.2.4:
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
 
 secp256k1@^3.0.1, secp256k1@^3.3.0:
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/secp256k1/-/secp256k1-3.5.0.tgz#677d3b8a8e04e1a5fa381a1ae437c54207b738d0"
+  version "3.5.2"
+  resolved "https://registry.yarnpkg.com/secp256k1/-/secp256k1-3.5.2.tgz#f95f952057310722184fe9c914e6b71281f2f2ae"
   dependencies:
     bindings "^1.2.1"
     bip66 "^1.1.3"
@@ -6799,8 +6898,8 @@ semver-diff@^2.0.0:
     semver "^5.0.3"
 
 "semver@2 || 3 || 4 || 5", semver@^5.0.3, semver@^5.1.0, semver@^5.3.0, semver@^5.4.1, semver@^5.5.0:
-  version "5.5.0"
-  resolved "https://registry.yarnpkg.com/semver/-/semver-5.5.0.tgz#dc4bbc7a6ca9d916dee5d43516f0092b58f7b8ab"
+  version "5.5.1"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-5.5.1.tgz#7dfdd8814bdb7cabc7be0fb1d734cfb66c940477"
 
 semver@4.3.2:
   version "4.3.2"
@@ -7074,6 +7173,12 @@ socket.io@^2.0.4, socket.io@^2.1.1:
     socket.io-adapter "~1.1.0"
     socket.io-client "2.1.1"
     socket.io-parser "~3.2.0"
+
+sort-keys@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/sort-keys/-/sort-keys-2.0.0.tgz#658535584861ec97d730d6cf41822e1f56684128"
+  dependencies:
+    is-plain-obj "^1.0.0"
 
 source-map-resolve@^0.5.0:
   version "0.5.2"
@@ -7359,7 +7464,7 @@ superagent@^3.8.2:
     qs "^6.5.1"
     readable-stream "^2.3.5"
 
-supports-color@5.4.0, supports-color@^5.3.0, supports-color@^5.4.0:
+supports-color@5.4.0:
   version "5.4.0"
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-5.4.0.tgz#1c6b337402c2137605efe19f10fec390f6faab54"
   dependencies:
@@ -7374,6 +7479,12 @@ supports-color@^3.1.2:
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-3.2.3.tgz#65ac0504b3954171d8a64946b2ae3cbb8a5f54f6"
   dependencies:
     has-flag "^1.0.0"
+
+supports-color@^5.3.0, supports-color@^5.4.0:
+  version "5.5.0"
+  resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-5.5.0.tgz#e2e69a44ac8772f78a1ec0b35b689df6530efc8f"
+  dependencies:
+    has-flag "^3.0.0"
 
 symbol-tree@^3.2.1:
   version "3.2.2"

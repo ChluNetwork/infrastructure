@@ -10,16 +10,16 @@
   "dependencies": {
     "chlu-api-publish": "ChluNetwork/chlu-api-publish#semver:~0.2.0",
     "chlu-api-query": "ChluNetwork/chlu-api-query#semver:~0.2.0",
-    "chlu-collector": "ChluNetwork/chlu-collector#semver:~0.2.0",
+    "chlu-collector": "ChluNetwork/chlu-collector#semver:~0.2.1",
     "chlu-did-service": "ChluNetwork/chlu-did-service#semver:~0.1.0",
-    "chlu-marketplace-js": "ChluNetwork/chlu-marketplace-js#semver:~0.2.1",
+    "chlu-marketplace-js": "ChluNetwork/chlu-marketplace-js#semver:~0.2.3",
     "libp2p-websocket-star-rendezvous": "~0.2.3",
     "node-env-file": "^0.1.8"
   },
   "devDependencies": {
     "chai": "^4.1.2",
     "chlu-api-client": "ChluNetwork/chlu-api-client-js#~0.2.0",
-    "chlu-ipfs-support": "ChluNetwork/chlu-ipfs-support#~0.2.0",
+    "chlu-ipfs-support": "ChluNetwork/chlu-ipfs-support#~0.2.2",
     "eslint": "^4.12.0",
     "lodash": "^4.17.10",
     "mocha": "^5.2.0",
