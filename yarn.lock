@@ -1023,8 +1023,8 @@ check-error@^1.0.1:
   resolved "https://registry.yarnpkg.com/check-error/-/check-error-1.0.2.tgz#574d312edd88bb5dd8912e9286dd6c0aed4aac82"
 
 chlu-api-client@ChluNetwork/chlu-api-client-js#~0.2.1:
-  version "0.2.1"
-  resolved "https://codeload.github.com/ChluNetwork/chlu-api-client-js/tar.gz/5978355a46123fb8814f80bcf3919d036cea6b9e"
+  version "0.2.2"
+  resolved "https://codeload.github.com/ChluNetwork/chlu-api-client-js/tar.gz/132658e7bcf3e686d9266fccc6e1a38cdfd9dc1c"
   dependencies:
     axios "^0.18.0"
     chlu-ipfs-support "ChluNetwork/chlu-ipfs-support#semver:~0.2.0"
@@ -1100,30 +1100,7 @@ chlu-api-client@ChluNetwork/chlu-api-client-js#~0.2.1:
     orbit-db "~0.19.9"
     protons "~1.0.1"
 
-"chlu-ipfs-support@ChluNetwork/chlu-ipfs-support#semver:~0.2.0":
-  version "0.2.1"
-  resolved "https://codeload.github.com/ChluNetwork/chlu-ipfs-support/tar.gz/813fa9d7cc50733ef00ffc7f5e6c2a2de0363415"
-  dependencies:
-    axios "^0.18.0"
-    blockcypher ChluNetwork/node-client
-    brorand "^1.1.0"
-    chlu-did "ChluNetwork/chlu-did#semver:~0.1.0"
-    chlu-wallet-support-js "ChluNetwork/chlu-wallet-support-js#semver:~0.1.1"
-    commander "^2.15.1"
-    debounce-async "^0.0.1"
-    elliptic "^6.4.0"
-    ipfs "~0.31.7"
-    ipfs-api "^22.3.0"
-    lodash "^4.17.5"
-    lru-cache "^4.1.2"
-    moment "^2.22.2"
-    orbit-db "~0.19.9"
-    pg "^7.4.3"
-    protons "~1.0.1"
-    sequelize "^4.38.0"
-    sqlite3 "^4.0.2"
-
-"chlu-ipfs-support@ChluNetwork/chlu-ipfs-support#semver:~0.2.3", chlu-ipfs-support@ChluNetwork/chlu-ipfs-support#~0.2.3:
+"chlu-ipfs-support@ChluNetwork/chlu-ipfs-support#semver:~0.2.0", "chlu-ipfs-support@ChluNetwork/chlu-ipfs-support#semver:~0.2.3", chlu-ipfs-support@ChluNetwork/chlu-ipfs-support#~0.2.3:
   version "0.2.3"
   resolved "https://codeload.github.com/ChluNetwork/chlu-ipfs-support/tar.gz/438367aa4532357390aa71a25c008012736d326c"
   dependencies:
@@ -1147,8 +1124,8 @@ chlu-api-client@ChluNetwork/chlu-api-client-js#~0.2.1:
     sqlite3 "^4.0.2"
 
 "chlu-marketplace-js@ChluNetwork/chlu-marketplace-js#semver:~0.2.4":
-  version "0.2.4"
-  resolved "https://codeload.github.com/ChluNetwork/chlu-marketplace-js/tar.gz/e8f3832c82a7758c56caa2866a381af808d6536b"
+  version "0.2.5"
+  resolved "https://codeload.github.com/ChluNetwork/chlu-marketplace-js/tar.gz/5cc63e50c906f7ad4773b85fb9e4843956479e49"
   dependencies:
     axios "^0.18.0"
     chlu-ipfs-support "ChluNetwork/chlu-ipfs-support#semver:~0.2.0"
@@ -1829,8 +1806,8 @@ engine.io@~3.2.0:
     ws "~3.3.1"
 
 epimetheus@^1.0.55:
-  version "1.0.55"
-  resolved "https://registry.yarnpkg.com/epimetheus/-/epimetheus-1.0.55.tgz#8f47408b2d680b1226ffd205d501f8f7d5e29206"
+  version "1.0.84"
+  resolved "https://registry.yarnpkg.com/epimetheus/-/epimetheus-1.0.84.tgz#bae753883ef2865c544e5911cd63d01029f27f2c"
   dependencies:
     prom-client "^10.0.0"
 
@@ -2333,8 +2310,8 @@ fnv1a@^1.0.1:
   resolved "https://registry.yarnpkg.com/fnv1a/-/fnv1a-1.0.1.tgz#915e2d6d023c43d5224ad9f6d2a3c4156f5712f5"
 
 follow-redirects@^1.3.0:
-  version "1.5.6"
-  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.5.6.tgz#44eb4fe1981dff25e2bd86b7d4033abcdb81e965"
+  version "1.5.7"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.5.7.tgz#a39e4804dacb90202bca76a9e2ac10433ca6a69a"
   dependencies:
     debug "^3.1.0"
 
@@ -2852,9 +2829,15 @@ iconv-lite@0.4.19:
   version "0.4.19"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.19.tgz#f7468f60135f5e5dad3399c0a81be9a1603a082b"
 
-iconv-lite@0.4.23, iconv-lite@^0.4.17, iconv-lite@^0.4.4:
+iconv-lite@0.4.23:
   version "0.4.23"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.23.tgz#297871f63be507adcfbfca715d0cd0eed84e9a63"
+  dependencies:
+    safer-buffer ">= 2.1.2 < 3"
+
+iconv-lite@^0.4.17, iconv-lite@^0.4.4:
+  version "0.4.24"
+  resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.24.tgz#2022b4b25fbddc21d2f524974a474aafe733908b"
   dependencies:
     safer-buffer ">= 2.1.2 < 3"
 
@@ -3144,8 +3127,8 @@ ipfs-log@~4.1.0:
     p-whilst "^1.0.0"
 
 ipfs-mfs@~0.3.0:
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/ipfs-mfs/-/ipfs-mfs-0.3.1.tgz#a3e37c1ae6420bcc46cde8cb364cc6424a5456e4"
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/ipfs-mfs/-/ipfs-mfs-0.3.2.tgz#1d01622db909ed0e7e9e401d31c7d315c56e3e76"
   dependencies:
     async "^2.6.1"
     blob "~0.0.4"
@@ -6398,8 +6381,8 @@ pull-stream-to-stream@^1.3.4:
   resolved "https://registry.yarnpkg.com/pull-stream-to-stream/-/pull-stream-to-stream-1.3.4.tgz#3f81d8216bd18d2bfd1a198190471180e2738399"
 
 pull-stream@^3.2.3, pull-stream@^3.4.5, pull-stream@^3.6.0, pull-stream@^3.6.1, pull-stream@^3.6.2, pull-stream@^3.6.7, pull-stream@^3.6.8:
-  version "3.6.8"
-  resolved "https://registry.yarnpkg.com/pull-stream/-/pull-stream-3.6.8.tgz#d63dee1c55ff2023fd380f724c387e931b752413"
+  version "3.6.9"
+  resolved "https://registry.yarnpkg.com/pull-stream/-/pull-stream-3.6.9.tgz#c774724cd63bc0984c3695f74c819aa02e977320"
 
 pull-stringify@^1.2.2:
   version "1.2.2"
