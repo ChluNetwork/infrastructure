@@ -1030,9 +1030,9 @@ chlu-api-client@ChluNetwork/chlu-api-client-js#~0.2.0:
     chlu-ipfs-support "ChluNetwork/chlu-ipfs-support#semver:~0.2.0"
     lodash "^4.17.10"
 
-"chlu-api-publish@ChluNetwork/chlu-api-publish#semver:~0.2.0":
-  version "0.2.0"
-  resolved "https://codeload.github.com/ChluNetwork/chlu-api-publish/tar.gz/cde0b45ab1e56d3e22418417129cfd771f432946"
+"chlu-api-publish@ChluNetwork/chlu-api-publish#semver:~0.3.0":
+  version "0.3.0"
+  resolved "https://codeload.github.com/ChluNetwork/chlu-api-publish/tar.gz/9f4474c87162aeb109891f2066d2f31bfb9e104a"
   dependencies:
     body-parser "^1.18.3"
     chlu-ipfs-support "ChluNetwork/chlu-ipfs-support#semver:~0.2.0"
@@ -1040,6 +1040,8 @@ chlu-api-client@ChluNetwork/chlu-api-client-js#~0.2.0:
     cors "^2.8.4"
     express "^4.16.3"
     lodash "^4.17.10"
+    node-fetch "^2.2.0"
+    nodemailer "4.6.8"
 
 "chlu-api-query@ChluNetwork/chlu-api-query#semver:~0.2.0":
   version "0.2.0"
@@ -5441,6 +5443,10 @@ node-env-file@^0.1.8:
   version "0.1.8"
   resolved "https://registry.yarnpkg.com/node-env-file/-/node-env-file-0.1.8.tgz#fccb7b050f735b5a33da9eb937cf6f1ab457fb69"
 
+node-fetch@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.2.0.tgz#4ee79bde909262f9775f731e3656d0db55ced5b5"
+
 node-forge@^0.7.1, node-forge@^0.7.5:
   version "0.7.6"
   resolved "https://registry.yarnpkg.com/node-forge/-/node-forge-0.7.6.tgz#fdf3b418aee1f94f0ef642cd63486c77ca9724ac"
@@ -5501,6 +5507,10 @@ nodeify@^1.0.1:
   dependencies:
     is-promise "~1.0.0"
     promise "~1.3.0"
+
+nodemailer@4.6.8:
+  version "4.6.8"
+  resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-4.6.8.tgz#f82fb407828bf2e76d92acc34b823d83e774f89c"
 
 noop-logger@^0.1.1:
   version "0.1.1"
