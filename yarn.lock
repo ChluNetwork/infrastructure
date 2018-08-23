@@ -1022,9 +1022,9 @@ check-error@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/check-error/-/check-error-1.0.2.tgz#574d312edd88bb5dd8912e9286dd6c0aed4aac82"
 
-chlu-api-client@ChluNetwork/chlu-api-client-js#~0.2.0:
-  version "0.2.0"
-  resolved "https://codeload.github.com/ChluNetwork/chlu-api-client-js/tar.gz/54b38f7b9913a32422bfb0e1521e252e4e578742"
+chlu-api-client@ChluNetwork/chlu-api-client-js#~0.2.1:
+  version "0.2.1"
+  resolved "https://codeload.github.com/ChluNetwork/chlu-api-client-js/tar.gz/5978355a46123fb8814f80bcf3919d036cea6b9e"
   dependencies:
     axios "^0.18.0"
     chlu-ipfs-support "ChluNetwork/chlu-ipfs-support#semver:~0.2.0"
@@ -1146,9 +1146,9 @@ chlu-api-client@ChluNetwork/chlu-api-client-js#~0.2.0:
     sequelize "^4.38.0"
     sqlite3 "^4.0.2"
 
-"chlu-marketplace-js@ChluNetwork/chlu-marketplace-js#semver:~0.2.3":
-  version "0.2.3"
-  resolved "https://codeload.github.com/ChluNetwork/chlu-marketplace-js/tar.gz/6d2927d6092e99f520ec4070281ff04bdaa23105"
+"chlu-marketplace-js@ChluNetwork/chlu-marketplace-js#semver:~0.2.4":
+  version "0.2.4"
+  resolved "https://codeload.github.com/ChluNetwork/chlu-marketplace-js/tar.gz/e8f3832c82a7758c56caa2866a381af808d6536b"
   dependencies:
     axios "^0.18.0"
     chlu-ipfs-support "ChluNetwork/chlu-ipfs-support#semver:~0.2.0"
