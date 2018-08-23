@@ -1054,11 +1054,11 @@ chlu-api-client@ChluNetwork/chlu-api-client-js#~0.2.0:
     express "^4.16.3"
     lodash "^4.17.10"
 
-"chlu-collector@ChluNetwork/chlu-collector#semver:~0.2.1":
-  version "0.2.1"
-  resolved "https://codeload.github.com/ChluNetwork/chlu-collector/tar.gz/189f877e7cd959d4637dfb9e82bd38e24edc0c49"
+"chlu-collector@ChluNetwork/chlu-collector#semver:~0.2.2":
+  version "0.2.2"
+  resolved "https://codeload.github.com/ChluNetwork/chlu-collector/tar.gz/133b9ced04657c48be5503c24a303bf8ba592217"
   dependencies:
-    chlu-ipfs-support "ChluNetwork/chlu-ipfs-support#semver:~0.2.2"
+    chlu-ipfs-support "ChluNetwork/chlu-ipfs-support#semver:~0.2.3"
     commander "^2.15.1"
     libp2p-websocket-star-rendezvous "~0.2.3"
     lodash "^4.17.5"
@@ -1123,9 +1123,9 @@ chlu-api-client@ChluNetwork/chlu-api-client-js#~0.2.0:
     sequelize "^4.38.0"
     sqlite3 "^4.0.2"
 
-"chlu-ipfs-support@ChluNetwork/chlu-ipfs-support#semver:~0.2.2", chlu-ipfs-support@ChluNetwork/chlu-ipfs-support#~0.2.2:
-  version "0.2.2"
-  resolved "https://codeload.github.com/ChluNetwork/chlu-ipfs-support/tar.gz/6655264a6d06a9695434ad57d75a528879ea60be"
+"chlu-ipfs-support@ChluNetwork/chlu-ipfs-support#semver:~0.2.3", chlu-ipfs-support@ChluNetwork/chlu-ipfs-support#~0.2.3:
+  version "0.2.3"
+  resolved "https://codeload.github.com/ChluNetwork/chlu-ipfs-support/tar.gz/438367aa4532357390aa71a25c008012736d326c"
   dependencies:
     axios "^0.18.0"
     blockcypher ChluNetwork/node-client
