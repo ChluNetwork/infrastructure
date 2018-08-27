@@ -1123,9 +1123,9 @@ chlu-api-client@ChluNetwork/chlu-api-client-js#~0.2.1:
     sequelize "^4.38.0"
     sqlite3 "^4.0.2"
 
-"chlu-marketplace-js@ChluNetwork/chlu-marketplace-js#semver:~0.2.4":
-  version "0.2.5"
-  resolved "https://codeload.github.com/ChluNetwork/chlu-marketplace-js/tar.gz/5cc63e50c906f7ad4773b85fb9e4843956479e49"
+"chlu-marketplace-js@ChluNetwork/chlu-marketplace-js#semver:~0.3.0":
+  version "0.3.0"
+  resolved "https://codeload.github.com/ChluNetwork/chlu-marketplace-js/tar.gz/07af616182ba02e41c9373f8439e29a0faf4d945"
   dependencies:
     axios "^0.18.0"
     chlu-ipfs-support "ChluNetwork/chlu-ipfs-support#semver:~0.2.0"
