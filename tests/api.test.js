@@ -318,9 +318,9 @@ describe('Integration: API Client + ChluIPFS with Query+Publish API Servers and 
             do {
                 // It might not be correct right away, need to wait for orbit-db to replicate
                 reviewsByAuthor = await api.getReviewsWrittenByDID(api.didIpfsHelper.didId)
-                if (reviewsByAuthor.length < 1) await waitMs(1000)
-            } while(reviewsByAuthor.length < 1)
-            expect(reviewsByAuthor.map(x => x.multihash)).to.contain(multihash)
+                if (reviewsByAuthor.rows.length < 1) await waitMs(1000)
+            } while(reviewsByAuthor.rows.length < 1)
+            expect(reviewsByAuthor.rows.map(x => x.multihash)).to.contain(multihash)
         })
 
         it('ChluIPFS publishes a review, then API Client reads review records by subject', async () => {
@@ -347,9 +347,9 @@ describe('Integration: API Client + ChluIPFS with Query+Publish API Servers and 
             do {
                 // It might not be correct right away, need to wait for orbit-db to replicate
                 reviewsBySubject = await api.getReviewsAboutDID(vendor.didIpfsHelper.didId)
-                if (reviewsBySubject.length < 1) await waitMs(1000)
-            } while(reviewsBySubject.length < 1)
-            expect(reviewsBySubject.map(x => x.multihash)).to.contain(multihash)
+                if (reviewsBySubject.rows.length < 1) await waitMs(1000)
+            } while(reviewsBySubject.rows.length < 1)
+            expect(reviewsBySubject.rows.map(x => x.multihash)).to.contain(multihash)
 
         })
     })

@@ -152,7 +152,7 @@ describe('Integration: Chlu Collector and Review Records', function() {
         expect(readRecord.editable).to.be.false;
         expect(strip(readRecord)).to.deep.equal(strip(customerRecord));
         // check orbit-db did indexing
-        expect((await serviceNode.orbitDb.getReviewsAboutDID(readRecord.subject.did)).map(x => x.multihash))
+        expect((await serviceNode.orbitDb.getReviewsAboutDID(readRecord.subject.did)).rows.map(x => x.multihash))
             .to.contain(hash)
     })
 
@@ -181,9 +181,9 @@ describe('Integration: Chlu Collector and Review Records', function() {
         expect(readRecord.editable).to.be.false;
         expect(strip(readRecord)).to.deep.equal(strip(customerRecord));
         // check orbit-db by did indexing
-        expect((await serviceNode.getReviewsWrittenByDID(readRecord.customer_signature.creator)).map(x => x.multihash))
+        expect((await serviceNode.getReviewsWrittenByDID(readRecord.customer_signature.creator)).rows.map(x => x.multihash))
             .to.contain(hash)
-        expect((await serviceNode.getReviewsAboutDID(readRecord.popr.vendor_did)).map(x => x.multihash))
+        expect((await serviceNode.getReviewsAboutDID(readRecord.popr.vendor_did)).rows.map(x => x.multihash))
             .to.contain(hash)
     });
 
