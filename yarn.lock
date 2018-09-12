@@ -1007,9 +1007,9 @@ chlu-api-client@ChluNetwork/chlu-api-client-js#~0.2.1:
     chlu-ipfs-support "ChluNetwork/chlu-ipfs-support#semver:~0.2.0"
     lodash "^4.17.10"
 
-"chlu-api-publish@ChluNetwork/chlu-api-publish#semver:~0.3.0":
-  version "0.3.2"
-  resolved "https://codeload.github.com/ChluNetwork/chlu-api-publish/tar.gz/73b54f91a13bfaf07f9eb4627f35613082cf2c4f"
+"chlu-api-publish@ChluNetwork/chlu-api-publish#semver:~0.4.0":
+  version "0.4.0"
+  resolved "https://codeload.github.com/ChluNetwork/chlu-api-publish/tar.gz/051c41a926dd79613ed56d1ee1f5c1f5403431c4"
   dependencies:
     body-parser "^1.18.3"
     chlu-ipfs-support "ChluNetwork/chlu-ipfs-support#semver:~0.2.0"
