@@ -362,11 +362,18 @@ describe('Integration: API Client + ChluIPFS with Query+Publish API Servers and 
         })
 
         it('API Client updates own Vendor profile on marketplace', async () => {
+            // Make sure the profile passes validation
             const profile = {
-                name: 'Developer'
+                type: 'individual',
+                firstname: 'Developer',
+                lastname: 'Of Chlu',
+                username: 'dev',
+                vendorAddress: 'mybtcaddress',
+                email: 'info@chlu.io'
             }
             await vendor.updateVendorProfile(marketplaceLocation, profile)
             const vendorData = await mkt.getVendor(vendor.didIpfsHelper.didId)
+            delete vendorData.profile.name
             expect(vendorData.profile).to.deep.equal(profile)
         })
     })
