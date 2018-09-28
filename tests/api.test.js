@@ -141,10 +141,10 @@ describe('Integration: API Client + ChluIPFS with Query+Publish API Servers and 
         sinon.spy(collector, 'pin') // Spy pinning activity of Collector
 
         // Set up mocks to make validator work
-        publishServer.chluIpfs.bitcoin.Blockcypher = btcUtils.BlockcypherMock;
-        queryServer.chluIpfs.bitcoin.Blockcypher = btcUtils.BlockcypherMock;
-        collector.bitcoin.Blockcypher = btcUtils.BlockcypherMock;
-        customer.bitcoin.Blockcypher = btcUtils.BlockcypherMock;
+        publishServer.chluIpfs.bitcoin.BitcoinAPIClient = btcUtils.BitcoinAPIClientMock
+        queryServer.chluIpfs.bitcoin.BitcoinAPIClient = btcUtils.BitcoinAPIClientMock
+        collector.bitcoin.BitcoinAPIClient = btcUtils.BitcoinAPIClientMock
+        customer.bitcoin.BitcoinAPIClient = btcUtils.BitcoinAPIClientMock
 
         // Start modules
         await collector.collector.start()

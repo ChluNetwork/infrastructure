@@ -999,54 +999,48 @@ check-error@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/check-error/-/check-error-1.0.2.tgz#574d312edd88bb5dd8912e9286dd6c0aed4aac82"
 
-chlu-api-client@ChluNetwork/chlu-api-client-js#~0.3.0:
-  version "0.3.0"
-  resolved "https://codeload.github.com/ChluNetwork/chlu-api-client-js/tar.gz/a8bc74090bf3d90128890e8a661a74bd2588f56f"
+"chlu-api-client@ChluNetwork/chlu-api-client-js#semver:~0.3.1":
+  version "0.3.1"
+  resolved "https://codeload.github.com/ChluNetwork/chlu-api-client-js/tar.gz/c16dca171f34ca21c88e0bddc50e9ff64f022e0d"
   dependencies:
     axios "^0.18.0"
-    chlu-ipfs-support "ChluNetwork/chlu-ipfs-support#semver:~0.2.0"
+    chlu-ipfs-support "ChluNetwork/chlu-ipfs-support#semver:~0.3.1"
     lodash "^4.17.10"
 
-"chlu-api-publish@ChluNetwork/chlu-api-publish#semver:~0.4.0":
-  version "0.4.0"
-  resolved "https://codeload.github.com/ChluNetwork/chlu-api-publish/tar.gz/051c41a926dd79613ed56d1ee1f5c1f5403431c4"
+"chlu-api-publish@ChluNetwork/chlu-api-publish#semver:~0.5.0":
+  version "0.5.0"
+  resolved "https://codeload.github.com/ChluNetwork/chlu-api-publish/tar.gz/3d87b07ec9eef2d0ab74f9d3cd811df87a41880e"
   dependencies:
     body-parser "^1.18.3"
-    chlu-ipfs-support "ChluNetwork/chlu-ipfs-support#semver:~0.2.0"
+    chlu-ipfs-support "ChluNetwork/chlu-ipfs-support#semver:~0.3.1"
     commander "^2.16.0"
     cors "^2.8.4"
     express "^4.16.3"
     lodash "^4.17.10"
+    mkdirp "^0.5.1"
     node-fetch "^2.2.0"
     nodemailer "4.6.8"
+    sequelize "^4.39.0"
 
-"chlu-api-query@ChluNetwork/chlu-api-query#semver:~0.3.0":
-  version "0.3.0"
-  resolved "https://codeload.github.com/ChluNetwork/chlu-api-query/tar.gz/7d933b76067638e67f234c08d0184c2d5a8c08bd"
+"chlu-api-query@ChluNetwork/chlu-api-query#semver:~0.3.1":
+  version "0.3.1"
+  resolved "https://codeload.github.com/ChluNetwork/chlu-api-query/tar.gz/37899f5f074a0ab0ece22f2699e64d57070f9ef5"
   dependencies:
     body-parser "^1.18.3"
-    chlu-ipfs-support "ChluNetwork/chlu-ipfs-support#semver:~0.3.0"
+    chlu-ipfs-support "ChluNetwork/chlu-ipfs-support#semver:~0.3.1"
     commander "^2.16.0"
     cors "^2.8.4"
     express "^4.16.3"
     lodash "^4.17.10"
 
-"chlu-collector@ChluNetwork/chlu-collector#semver:~0.2.2":
-  version "0.2.2"
-  resolved "https://codeload.github.com/ChluNetwork/chlu-collector/tar.gz/133b9ced04657c48be5503c24a303bf8ba592217"
+"chlu-collector@ChluNetwork/chlu-collector#semver:~0.2.3":
+  version "0.2.3"
+  resolved "https://codeload.github.com/ChluNetwork/chlu-collector/tar.gz/4a00b62f934bcf88d316d3269b8e7a301bae9faa"
   dependencies:
-    chlu-ipfs-support "ChluNetwork/chlu-ipfs-support#semver:~0.2.3"
+    chlu-ipfs-support "ChluNetwork/chlu-ipfs-support#semver:~0.3.1"
     commander "^2.15.1"
     libp2p-websocket-star-rendezvous "~0.2.3"
     lodash "^4.17.5"
-
-"chlu-did-service@ChluNetwork/chlu-did-service#semver:~0.1.0":
-  version "0.1.0"
-  resolved "https://codeload.github.com/ChluNetwork/chlu-did-service/tar.gz/024a5176a72e336a330bc8f0691c793ea5215a76"
-  dependencies:
-    chlu-ipfs-support "ChluNetwork/chlu-ipfs-support#semver:~0.1.0"
-    commander "^2.15.1"
-    express "^4.16.3"
 
 "chlu-did@ChluNetwork/chlu-did#semver:~0.1.0":
   version "0.1.0"
@@ -1057,32 +1051,11 @@ chlu-api-client@ChluNetwork/chlu-api-client-js#~0.3.0:
     elliptic "^6.4.0"
     js-sha3 "^0.7.0"
 
-"chlu-ipfs-support@ChluNetwork/chlu-ipfs-support#semver:~0.1.0":
-  version "0.1.1"
-  resolved "https://codeload.github.com/ChluNetwork/chlu-ipfs-support/tar.gz/e08d7e427b4339b4e9f8ac9322f92028c467a94a"
+"chlu-ipfs-support@ChluNetwork/chlu-ipfs-support#semver:~0.3.1":
+  version "0.3.1"
+  resolved "https://codeload.github.com/ChluNetwork/chlu-ipfs-support/tar.gz/67a1b6bed9abccd80460922ce4ddb0295ea81e16"
   dependencies:
     axios "^0.18.0"
-    blockcypher ChluNetwork/node-client
-    brorand "^1.1.0"
-    chlu-did "ChluNetwork/chlu-did#semver:~0.1.0"
-    chlu-wallet-support-js "ChluNetwork/chlu-wallet-support-js#semver:~0.1.1"
-    commander "^2.15.1"
-    debounce-async "^0.0.1"
-    elliptic "^6.4.0"
-    ipfs "~0.31.0"
-    ipfs-api "^22.3.0"
-    lodash "^4.17.5"
-    lru-cache "^4.1.2"
-    moment "^2.22.2"
-    orbit-db "~0.19.9"
-    protons "~1.0.1"
-
-"chlu-ipfs-support@ChluNetwork/chlu-ipfs-support#semver:~0.2.0", "chlu-ipfs-support@ChluNetwork/chlu-ipfs-support#semver:~0.2.3":
-  version "0.2.5"
-  resolved "https://codeload.github.com/ChluNetwork/chlu-ipfs-support/tar.gz/bf664734528a0484107f79137a48ec2433c73b6a"
-  dependencies:
-    axios "^0.18.0"
-    blockcypher ChluNetwork/node-client
     brorand "^1.1.0"
     chlu-did "ChluNetwork/chlu-did#semver:~0.1.0"
     chlu-wallet-support-js "ChluNetwork/chlu-wallet-support-js#semver:~0.1.1"
@@ -1100,35 +1073,12 @@ chlu-api-client@ChluNetwork/chlu-api-client-js#~0.3.0:
     sequelize "^4.38.0"
     sqlite3 "^4.0.2"
 
-"chlu-ipfs-support@ChluNetwork/chlu-ipfs-support#semver:~0.3.0", chlu-ipfs-support@ChluNetwork/chlu-ipfs-support#~0.3.0:
-  version "0.3.0"
-  resolved "https://codeload.github.com/ChluNetwork/chlu-ipfs-support/tar.gz/f73b1d0bbbe9d06a4c8f306da172b58e8f6ee86e"
+"chlu-marketplace-js@ChluNetwork/chlu-marketplace-js#semver:~0.4.1":
+  version "0.4.1"
+  resolved "https://codeload.github.com/ChluNetwork/chlu-marketplace-js/tar.gz/6ddcb034077338cc10a6be13f69559a4ae5c0f52"
   dependencies:
     axios "^0.18.0"
-    blockcypher ChluNetwork/node-client
-    brorand "^1.1.0"
-    chlu-did "ChluNetwork/chlu-did#semver:~0.1.0"
-    chlu-wallet-support-js "ChluNetwork/chlu-wallet-support-js#semver:~0.1.1"
-    commander "^2.15.1"
-    debounce-async "^0.0.1"
-    elliptic "^6.4.0"
-    ipfs "~0.31.7"
-    ipfs-api "^22.3.0"
-    lodash "^4.17.5"
-    lru-cache "^4.1.2"
-    moment "^2.22.2"
-    orbit-db "~0.19.9"
-    pg "^7.4.3"
-    protons "~1.0.1"
-    sequelize "^4.38.0"
-    sqlite3 "^4.0.2"
-
-"chlu-marketplace-js@ChluNetwork/chlu-marketplace-js#semver:~0.4.0":
-  version "0.4.0"
-  resolved "https://codeload.github.com/ChluNetwork/chlu-marketplace-js/tar.gz/798e2c91b8722183f76e8998d4978cc52f7002b3"
-  dependencies:
-    axios "^0.18.0"
-    chlu-ipfs-support "ChluNetwork/chlu-ipfs-support#semver:~0.2.0"
+    chlu-ipfs-support "ChluNetwork/chlu-ipfs-support#semver:~0.3.1"
     commander "^2.15.0"
     cors "^2.8.4"
     express "^4.16.2"
@@ -3289,7 +3239,7 @@ ipfs-unixfs@^0.1.14, ipfs-unixfs@~0.1.15:
   dependencies:
     protons "^1.0.0"
 
-ipfs@~0.31.0, ipfs@~0.31.7:
+ipfs@~0.31.7:
   version "0.31.7"
   resolved "https://registry.yarnpkg.com/ipfs/-/ipfs-0.31.7.tgz#4383c263421da9e6020257e44aae3759f3fdc7f0"
   dependencies:
@@ -6980,6 +6930,28 @@ send@0.16.2:
 sequelize@^4.35.1, sequelize@^4.38.0:
   version "4.38.0"
   resolved "https://registry.yarnpkg.com/sequelize/-/sequelize-4.38.0.tgz#330c1aa445d4e46b80a97d895603c01666cdc357"
+  dependencies:
+    bluebird "^3.5.0"
+    cls-bluebird "^2.1.0"
+    debug "^3.1.0"
+    depd "^1.1.0"
+    dottie "^2.0.0"
+    generic-pool "^3.4.0"
+    inflection "1.12.0"
+    lodash "^4.17.1"
+    moment "^2.20.0"
+    moment-timezone "^0.5.14"
+    retry-as-promised "^2.3.2"
+    semver "^5.5.0"
+    terraformer-wkt-parser "^1.1.2"
+    toposort-class "^1.0.1"
+    uuid "^3.2.1"
+    validator "^10.4.0"
+    wkx "^0.4.1"
+
+sequelize@^4.39.0:
+  version "4.39.0"
+  resolved "https://registry.yarnpkg.com/sequelize/-/sequelize-4.39.0.tgz#0e070a4705367e4b0779183f812c72f478ff12b9"
   dependencies:
     bluebird "^3.5.0"
     cls-bluebird "^2.1.0"

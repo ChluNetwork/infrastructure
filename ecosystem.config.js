@@ -15,11 +15,54 @@ const marketplaceLocation = process.env.CHLU_MARKETPLACE_LOCATION || 'http://loc
 const dbHost = process.env.CHLU_POSTGRESQL_HOST || 'localhost'
 const dbPort = process.env.CHLU_POSTGRESQL_PORT || 5432
 const dbName = process.env.CHLU_POSTGRESQL_DB
+const publishDbName = process.env.CHLU_PUBLISH_POSTGRESQL_DB
+const marketplaceDbName = process.env.CHLU_MARKETPLACE_POSTGRESQL_DB
 const dbUser = process.env.CHLU_POSTGRESQL_USER
 const dbPassword = process.env.CHLU_POSTGRESQL_PASSWORD
-const databaseConfCollector = `--postgres --database-host ${dbHost} --database-port ${dbPort} --database-db ${dbName} --database-user ${dbUser} ${dbPassword ? `--database-password ${dbPassword}` : ''}`
-const databaseConfAPIServers = `--no-write ${databaseConfCollector}`
-const databaseConfMarketplace = `--chlu-postgres --chlu-no-write --chlu-database-host ${dbHost} --chlu-database-port ${dbPort} --chlu-database-name ${dbName} --chlu-database-user ${dbUser} ${dbPassword ? `--chlu-database-password ${dbPassword}` : ''}`
+const databaseConfCollector = `
+    --postgres
+    --database-host ${dbHost}
+    --database-port ${dbPort}
+    --database-db ${dbName}
+    --database-user ${dbUser}
+    ${dbPassword ? `--database-password ${dbPassword}` : ''}`
+const databaseConfQueryAPIServer = `
+    --no-write
+    ${databaseConfCollector}`
+const publishDbConf = publishDbName ? `
+    --postgres
+    --database-host ${dbHost}
+    --database-port ${dbHost}
+    --database-name ${publishDbName}
+    --chlu-database-user ${dbUser}
+    ${dbPassword ? `--chlu-database-password ${dbPassword}` : ''}
+` : ''
+const databaseConfPublishAPIServer = `
+    ${publishDbConf}
+    --chlu-postgres
+    --chlu-no-write
+    --chlu-database-host ${dbHost}
+    --chlu-database-port ${dbPort}
+    --chlu-database-name ${dbName}
+    --chlu-database-user ${dbUser}
+    ${dbPassword ? `--chlu-database-password ${dbPassword}` : ''}`
+const marketplaceDbConf = marketplaceDbName ? `
+    --postgres
+    --database-host ${dbHost}
+    --database-port ${dbHost}
+    --database-name ${marketplaceDbName}
+    --chlu-database-user ${dbUser}
+    ${dbPassword ? `--chlu-database-password ${dbPassword}` : ''}
+` : ''
+const databaseConfMarketplace = `
+    ${marketplaceDbConf}
+    --chlu-postgres
+    --chlu-no-write
+    --chlu-database-host ${dbHost}
+    --chlu-database-port ${dbPort}
+    --chlu-database-name ${dbName}
+    --chlu-database-user ${dbUser}
+    ${dbPassword ? `--chlu-database-password ${dbPassword}` : ''}`
 
 module.exports = {
     /**
@@ -47,14 +90,14 @@ module.exports = {
             name: 'chlu-api-query',
             script: projectPath('chlu-api-query/src/bin.js'),
             watch: false,
-            args: `start --network ${network} ` + (blockcypherToken ? ` --btc ${blockcypherToken} ${databaseConfAPIServers}` : ''),
+            args: `start --network ${network} ` + (blockcypherToken ? ` --btc ${blockcypherToken} ${databaseConfQueryAPIServer}` : ''),
             max_memory_restart: '250M'
         },
         {
             name: 'chlu-api-publish',
             script: projectPath('chlu-api-publish/src/bin.js'),
             watch: false,
-            args: `start --network ${network} ` + (blockcypherToken ? ` --btc ${blockcypherToken} ${databaseConfAPIServers}` : ''),
+            args: `start --network ${network} ` + (blockcypherToken ? ` --btc ${blockcypherToken} ${databaseConfPublishAPIServer}` : ''),
             max_memory_restart: '250M'
         },
         // High-level services built on Chlu libraries

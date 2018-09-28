@@ -99,8 +99,8 @@ describe('Integration: Chlu Collector and Review Records', function() {
         customerNode.http = http;
         serviceNode.ipfsUtils.stop = sinon.stub().resolves();
         customerNode.ipfsUtils.stop = sinon.stub().resolves();
-        serviceNode.bitcoin.Blockcypher = btcUtils.BlockcypherMock;
-        customerNode.bitcoin.Blockcypher = btcUtils.BlockcypherMock;
+        serviceNode.bitcoin.BitcoinAPIClient = btcUtils.BitcoinAPIClientMock
+        customerNode.bitcoin.BitcoinAPIClient = btcUtils.BitcoinAPIClientMock
 
         // Start nodes
         await Promise.all([serviceNode.start(), customerNode.start()]);
