@@ -8,7 +8,7 @@
     "start": "bash ./start.sh"
   },
   "dependencies": {
-    "chlu-api-publish": "ChluNetwork/chlu-api-publish#semver:~0.5.0",
+    "chlu-api-publish": "ChluNetwork/chlu-api-publish#semver:~0.6.0",
     "chlu-api-query": "ChluNetwork/chlu-api-query#semver:~0.3.1",
     "chlu-collector": "ChluNetwork/chlu-collector#semver:~0.2.3",
     "chlu-marketplace-js": "ChluNetwork/chlu-marketplace-js#semver:~0.4.1",
