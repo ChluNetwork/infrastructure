@@ -1174,9 +1174,9 @@ check-error@^1.0.1:
     chlu-ipfs-support "ChluNetwork/chlu-ipfs-support#semver:~0.3.1"
     lodash "^4.17.10"
 
-"chlu-api-publish@ChluNetwork/chlu-api-publish#semver:~0.6.0":
-  version "0.6.0"
-  resolved "https://codeload.github.com/ChluNetwork/chlu-api-publish/tar.gz/b371c31ddd6f1cf35cd2612954e0ea7f21413ab0"
+"chlu-api-publish@ChluNetwork/chlu-api-publish#semver:~0.7.0":
+  version "0.7.0"
+  resolved "https://codeload.github.com/ChluNetwork/chlu-api-publish/tar.gz/ad13d337bb5445670dbba5ab3de90dd8c8382a09"
   dependencies:
     body-parser "^1.18.3"
     chlu-ipfs-support "ChluNetwork/chlu-ipfs-support#semver:~0.3.1"

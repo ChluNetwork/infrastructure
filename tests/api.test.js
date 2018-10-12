@@ -80,6 +80,9 @@ describe('Integration: API Client + ChluIPFS with Query+Publish API Servers and 
                 OrbitDBIndexOptions
             }
         })
+        // Disable syncing with crawlers
+        publishServer.crawler.startSyncAllJobsLoop = sinon.stub().resolves()
+        publishServer.crawler.stopSyncAllJobsLoop = sinon.stub().resolves()
         publishServer.chluIpfs.ipfs = await createIPFS({
             repo: getTestDir('publish-server/ipfs', date)
         })

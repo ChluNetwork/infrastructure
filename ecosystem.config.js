@@ -10,6 +10,7 @@ function projectPath(s) {
 env(path.join(__dirname, '.env'))
 
 const blockcypherToken = process.env.BLOCKCYPHER_TOKEN
+const crawlerToken = process.env.CRAWLER_TOKEN
 const network = process.env.CHLU_NETWORK || 'experimental'
 const marketplaceLocation = process.env.CHLU_MARKETPLACE_LOCATION || 'http://localhost:5000'
 const dbHost = process.env.CHLU_POSTGRESQL_HOST || 'localhost'
@@ -38,6 +39,7 @@ const publishDbConf = publishDbName ? `
     ${dbPassword ? `--chlu-database-password ${dbPassword}` : ''}
 ` : ''
 const databaseConfPublishAPIServer = `
+    ${crawlerToken ? `--crawler-token ${crawlerToken}` : ''}
     ${publishDbConf}
     --chlu-postgres
     --chlu-no-write
