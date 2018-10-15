@@ -57,6 +57,7 @@ describe('Integration: API Client + ChluIPFS with Query+Publish API Servers and 
             password: dbPassword,
         }
         // Prepare Services
+        const allowedUnverifiedReviewIssuers = ['*']
         queryServer = new ChluAPIQuery({
             port: queryPort,
             logger: logger('Query', verbose),
@@ -64,7 +65,8 @@ describe('Integration: API Client + ChluIPFS with Query+Publish API Servers and 
                 directory: getTestDir('query-server', date),
                 logger: logger('Query', verbose),
                 OrbitDBIndex,
-                OrbitDBIndexOptions
+                OrbitDBIndexOptions,
+                allowedUnverifiedReviewIssuers
             }
         })
         queryServer.chluIpfs.ipfs = await createIPFS({
@@ -77,7 +79,8 @@ describe('Integration: API Client + ChluIPFS with Query+Publish API Servers and 
                 directory: getTestDir('publish-server', date),
                 logger: logger('Query', verbose),
                 OrbitDBIndex,
-                OrbitDBIndexOptions
+                OrbitDBIndexOptions,
+                allowedUnverifiedReviewIssuers
             }
         })
         // Disable syncing with crawlers
@@ -95,6 +98,7 @@ describe('Integration: API Client + ChluIPFS with Query+Publish API Servers and 
         customer = new ChluIPFS({
             directory: getTestDir('customer', date),
             logger: logger('Customer', verbose),
+            allowedUnverifiedReviewIssuers
             // TODO: can't use Noop index: we require full index for publishing
         })
         customer.ipfs = await createIPFS({
@@ -104,7 +108,8 @@ describe('Integration: API Client + ChluIPFS with Query+Publish API Servers and 
             publishApiUrl: `http://localhost:${publishPort}`,
             queryApiUrl: `http://localhost:${queryPort}`,
             directory: getTestDir('vendor-api-client', date),
-            logger: logger('Vendor', verbose)
+            logger: logger('Vendor', verbose),
+            allowedUnverifiedReviewIssuers
         })
         collector = new ChluIPFS({
             directory: getTestDir('collector', date),
@@ -114,7 +119,8 @@ describe('Integration: API Client + ChluIPFS with Query+Publish API Servers and 
                 enableWrites: true,
                 enableValidations: true,
                 clearOnStart: true
-            })
+            }),
+            allowedUnverifiedReviewIssuers
         })
         collector.ipfs = await createIPFS({
             repo: getTestDir('collector/ipfs', date)
@@ -128,7 +134,8 @@ describe('Integration: API Client + ChluIPFS with Query+Publish API Servers and 
                 network: 'experimental',
                 directory: getTestDir('marketplace', date),
                 OrbitDBIndex,
-                OrbitDBIndexOptions
+                OrbitDBIndexOptions,
+                allowedUnverifiedReviewIssuers
             },
             db: {
                 password: 'test',

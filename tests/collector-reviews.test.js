@@ -64,17 +64,21 @@ describe('Integration: Chlu Collector and Review Records', function() {
             password: dbPassword,
             clearOnStart: true
         }
+        // Other config
+        const allowedUnverifiedReviewIssuers = ['*']
 
         serviceNode = new ChluIPFS({
             logger: logger('Collector', verbose),
             directory: serviceNodeDir,
             OrbitDBIndex,
-            OrbitDBIndexOptions
+            OrbitDBIndexOptions,
+            allowedUnverifiedReviewIssuers
         });
         serviceNode.collector = new ChluCollector(serviceNode)
         customerNode = new ChluIPFS({
             logger: logger('Customer', verbose),
-            directory: customerDir
+            directory: customerDir,
+            allowedUnverifiedReviewIssuers
         });
         // Make sure they don't connect to production
         expect(customerNode.network).to.equal(ChluIPFS.networks.experimental);
